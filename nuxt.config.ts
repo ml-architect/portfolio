@@ -1,4 +1,6 @@
 export default defineNuxtConfig({
+  srcDir: 'app/',
+
   devtools: { enabled: true },
 
   app: {
@@ -14,7 +16,7 @@ export default defineNuxtConfig({
         { property: 'og:title', content: 'ML Architect Portfolio' },
         { property: 'og:description', content: 'Portfolio of an ML Engineer & Software Architect' },
         { property: 'og:type', content: 'website' },
-        { name: 'theme-color', content: '#0a0b14' },
+        { name: 'theme-color', content: '#000000' },
       ],
     },
     pageTransition: { name: 'page', mode: 'out-in' },

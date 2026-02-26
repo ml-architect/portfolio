@@ -51,27 +51,32 @@
 - Форма обратной связи — без бэкенда (mailto или внешний сервис)
 - Максимальный размер репозитория: 1 GB, размер файла: 100 MB
 
-## Структура проекта (целевая)
+## Структура проекта
 ```
-├── assets/            # Стили, шрифты, статичные ресурсы
-├── components/        # Vue-компоненты
-├── composables/       # Композиции (useGsap и др.)
-├── content/           # Markdown-контент (@nuxt/content)
-│   ├── ru/            # Русскоязычный контент
+├── app/                   # Исходный код (srcDir)
+│   ├── app.vue            # Корневой компонент
+│   ├── error.vue          # Страница ошибки
+│   ├── assets/            # Стили, шрифты, статичные ресурсы
+│   ├── components/        # Vue-компоненты
+│   ├── composables/       # Композиции (useGsap и др.)
+│   ├── layouts/           # Layouts (default)
+│   ├── pages/             # Страницы (файловая маршрутизация)
+│   ├── plugins/           # Nuxt-плагины (gsap.client.ts)
+│   └── types/             # TypeScript-типы
+├── content/               # Markdown-контент (@nuxt/content)
+│   ├── ru/                # Русскоязычный контент
 │   │   ├── blog/
 │   │   └── projects/
-│   └── en/            # Англоязычный контент
+│   └── en/                # Англоязычный контент
 │       ├── blog/
 │       └── projects/
-├── layouts/           # Layouts (default)
-├── locales/           # Переводы i18n
+├── locales/               # Переводы i18n
 │   ├── ru.json
 │   └── en.json
-├── pages/             # Страницы (файловая маршрутизация)
-├── plugins/           # Nuxt-плагины (gsap.client.ts)
-├── public/            # Статичные файлы (favicon, og-images)
-├── .github/workflows/ # GitHub Actions
-├── nuxt.config.ts
+├── public/                # Статичные файлы (favicon, og-images)
+├── docs/                  # Документация и справочные материалы
+├── .github/workflows/     # GitHub Actions
+├── nuxt.config.ts         # Конфигурация Nuxt (srcDir: 'app/')
 ├── tailwind.config.ts
 └── package.json
 ```

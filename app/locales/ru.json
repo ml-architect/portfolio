@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Главная",
+    "projects": "Проекты",
+    "blog": "Блог",
+    "about": "Обо мне"
+  },
+  "hero": {
+    "badge": "ML-инженер & Архитектор",
+    "title": "AI Systems&",
+    "titleAccent": "Architecture",
+    "subtitle": "Backend-разработчик и ML-инженер. Проектирую production-ready AI-платформы, микросервисные архитектуры и системы обработки данных.",
+    "cta_projects": "Смотреть проекты",
+    "cta_about": "Обо мне",
+    "lets_talk": "Обсудим ваш проект?",
+    "email": "mattias666{'@'}mail.ru"
+  },
+  "stats": {
+    "projects": "проектов",
+    "commercial": "коммерческих продуктов",
+    "experience": "лет опыта",
+    "technologies": "технологий"
+  },
+  "sections": {
+    "featured": "Избранные проекты",
+    "featured_subtitle": "Коммерческие продукты и исследовательские проекты",
+    "skills": "Технологии",
+    "skills_subtitle": "Стек, с которым работаю ежедневно",
+    "contact": "Связаться",
+    "contact_subtitle": "Открыт к предложениям и интересным проектам",
+    "all_projects": "Все проекты",
+    "view_project": "Подробнее",
+    "view_all": "Смотреть все"
+  },
+  "project": {
+    "client": "Заказчик",
+    "role": "Роль",
+    "team": "Команда",
+    "date": "Дата",
+    "tags": "Технологии",
+    "highlights": "Ключевые особенности",
+    "github": "GitHub",
+    "back": "Назад к проектам",
+    "prev": "Предыдущий проект",
+    "next": "Следующий проект"
+  },
+  "filter": {
+    "all": "Все",
+    "commercial": "Коммерческие",
+    "research": "Исследования"
+  },
+  "about": {
+    "title": "Обо мне",
+    "subtitle": "ML-инженер, backend-разработчик, архитектор",
+    "bio_1": "Проектирую и разрабатываю production-ready AI-платформы, микросервисные архитектуры и облачные системы обработки данных. Более 5 лет в разработке, из них последние 3 года сфокусирован на ML/AI-инфраструктуре.",
+    "bio_2": "Создал облачную платформу речевых AI-сервисов (10 микросервисов, GPU inference), систему анализа контрактов с fine-tuned LLM, SOC-платформу с ML-детекцией атак и ряд других продуктов.",
+    "experience_title": "Опыт работы",
+    "skills_title": "Компетенции",
+    "education_title": "Образование"
+  },
+  "blog": {
+    "title": "Блог",
+    "subtitle": "Заметки об ML, архитектуре и разработке",
+    "read_more": "Читать далее",
+    "empty": "Записей пока нет. Скоро здесь появятся статьи."
+  },
+  "expertise": {
+    "backend_title": "Backend-системы",
+    "backend_desc": "Python, FastAPI, asyncio, микросервисная архитектура. Проектирую высоконагруженные API, WebSocket-сервисы и распределённые системы обработки данных.",
+    "ml_title": "ML & AI",
+    "ml_desc": "PyTorch, Transformers, LLM fine-tuning, vLLM inference. Строю end-to-end ML-пайплайны от экспериментов до production с GPU-оптимизацией.",
+    "data_title": "Data Engineering",
+    "data_desc": "PostgreSQL, Redis, Elasticsearch, векторные БД (pgvector, FAISS, Milvus). Проектирую схемы данных, ETL-процессы и поисковые системы.",
+    "infra_title": "Инфраструктура",
+    "infra_desc": "Docker, GitLab CI/CD, Grafana, мониторинг. Настраиваю контейнеризацию, автоматизацию деплоя и observability-стек для ML-сервисов."
+  },
+  "footer": {
+    "copyright": "© {year} ML Architect",
+    "built_with": "Создано на Nuxt"
+  },
+  "common": {
+    "scroll_down": "Прокрутить вниз",
+    "loading": "Загрузка...",
+    "not_found": "Страница не найдена",
+    "not_found_text": "Запрашиваемая страница не существует или была перемещена.",
+    "back_home": "На главную"
+  }
+}

@@ -2,12 +2,13 @@ import type { Config } from 'tailwindcss'
 
 export default <Config>{
   content: [
-    './components/**/*.{vue,ts}',
-    './layouts/**/*.vue',
-    './pages/**/*.vue',
-    './composables/**/*.ts',
-    './plugins/**/*.ts',
-    './app.vue',
+    './app/components/**/*.{vue,ts}',
+    './app/layouts/**/*.vue',
+    './app/pages/**/*.vue',
+    './app/composables/**/*.ts',
+    './app/plugins/**/*.ts',
+    './app/app.vue',
+    './app/error.vue',
   ],
   theme: {
     extend: {
@@ -26,24 +27,26 @@ export default <Config>{
           950: '#0a0d66',
         },
         surface: {
-          950: '#0a0b14',
-          900: '#0f1021',
-          800: '#161830',
-          700: '#1e2042',
-          600: '#272a54',
-          500: '#363966',
+          950: '#000000',
+          900: '#0a0a0a',
+          800: '#141414',
+          700: '#1e1e1e',
+          600: '#2a2a2a',
+          500: '#3a3a3a',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        sans: ['Sora', 'system-ui', '-apple-system', 'sans-serif'],
         mono: ['JetBrains Mono', 'Fira Code', 'monospace'],
-        display: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['Sora', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'display-xl': ['4.5rem', { lineHeight: '1.1', letterSpacing: '-0.03em' }],
-        'display-lg': ['3.5rem', { lineHeight: '1.1', letterSpacing: '-0.02em' }],
-        'display-md': ['2.5rem', { lineHeight: '1.2', letterSpacing: '-0.02em' }],
+        'display-hero': ['clamp(3.5rem, 9vw, 9rem)', { lineHeight: '0.9', letterSpacing: '-0.04em' }],
+        'display-xl': ['4.5rem', { lineHeight: '1.0', letterSpacing: '-0.03em' }],
+        'display-lg': ['3.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
+        'display-md': ['2.5rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],
         'display-sm': ['2rem', { lineHeight: '1.2', letterSpacing: '-0.01em' }],
+        'marquee': ['clamp(3rem, 8vw, 8rem)', { lineHeight: '1', letterSpacing: '-0.02em' }],
       },
       borderRadius: {
         'card': '16px',

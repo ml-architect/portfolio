@@ -1,0 +1,88 @@
+{
+  "nav": {
+    "home": "Home",
+    "projects": "Projects",
+    "blog": "Blog",
+    "about": "About"
+  },
+  "hero": {
+    "badge": "ML Engineer & Architect",
+    "title": "AI Systems&",
+    "titleAccent": "Architecture",
+    "subtitle": "Backend developer and ML engineer. Designing production-ready AI platforms, microservice architectures, and data processing systems.",
+    "cta_projects": "View Projects",
+    "cta_about": "About Me",
+    "lets_talk": "Let's Discuss Your Project",
+    "email": "mattias666{'@'}mail.ru"
+  },
+  "stats": {
+    "projects": "projects",
+    "commercial": "commercial products",
+    "experience": "years of experience",
+    "technologies": "technologies"
+  },
+  "sections": {
+    "featured": "Featured Projects",
+    "featured_subtitle": "Commercial products and research projects",
+    "skills": "Technologies",
+    "skills_subtitle": "The stack I work with daily",
+    "contact": "Get in Touch",
+    "contact_subtitle": "Open to opportunities and interesting projects",
+    "all_projects": "All Projects",
+    "view_project": "Learn More",
+    "view_all": "View All"
+  },
+  "project": {
+    "client": "Client",
+    "role": "Role",
+    "team": "Team",
+    "date": "Date",
+    "tags": "Technologies",
+    "highlights": "Key Features",
+    "github": "GitHub",
+    "back": "Back to Projects",
+    "prev": "Previous Project",
+    "next": "Next Project"
+  },
+  "filter": {
+    "all": "All",
+    "commercial": "Commercial",
+    "research": "Research"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "ML engineer, backend developer, architect",
+    "bio_1": "I design and develop production-ready AI platforms, microservice architectures, and cloud-based data processing systems. Over 5 years in software development, with the last 3 years focused on ML/AI infrastructure.",
+    "bio_2": "Built a cloud platform for speech AI services (10 microservices, GPU inference), a contract risk analysis system with fine-tuned LLM, a SOC platform with ML-based attack detection, and several other products.",
+    "experience_title": "Work Experience",
+    "skills_title": "Core Skills",
+    "education_title": "Education"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Notes on ML, architecture, and development",
+    "read_more": "Read More",
+    "empty": "No posts yet. Articles coming soon."
+  },
+  "expertise": {
+    "backend_title": "Backend Systems",
+    "backend_desc": "Python, FastAPI, asyncio, microservice architecture. Designing high-load APIs, WebSocket services, and distributed data processing systems.",
+    "ml_title": "ML & AI",
+    "ml_desc": "PyTorch, Transformers, LLM fine-tuning, vLLM inference. Building end-to-end ML pipelines from experiments to production with GPU optimization.",
+    "data_title": "Data Engineering",
+    "data_desc": "PostgreSQL, Redis, Elasticsearch, vector databases (pgvector, FAISS, Milvus). Designing data schemas, ETL processes, and search systems.",
+    "infra_title": "Infrastructure",
+    "infra_desc": "Docker, GitLab CI/CD, Grafana, monitoring. Setting up containerization, deployment automation, and observability stack for ML services."
+  },
+  "footer": {
+    "copyright": "© {year} ML Architect",
+    "built_with": "Built with Nuxt"
+  },
+  "common": {
+    "scroll_down": "Scroll down",
+    "loading": "Loading...",
+    "not_found": "Page Not Found",
+    "not_found_text": "The page you requested does not exist or has been moved.",
+    "back_home": "Go Home"
+  }
+}
