@@ -21,6 +21,22 @@
     "experience": "years of experience",
     "technologies": "technologies"
   },
+  "impact": {
+    "title": "Impact",
+    "subtitle": "Real metrics from commercial projects",
+    "cloud_title": "Microservices",
+    "cloud_desc": "Cloud ASR platform with GPU inference and real-time streaming",
+    "contracts_title": "Risk Factors",
+    "contracts_desc": "AI contract analysis with Dual-LLM verification and fine-tuned models",
+    "models_title": "ML Models",
+    "models_desc": "Whisper, BERT, CatBoost, YOLOv8, Qwen, Llama — in production",
+    "finetune_title": "Fine-tuned LLMs",
+    "finetune_desc": "Qwen2.5 (0.5B–32B) with QLoRA, Unsloth, published to HF Hub",
+    "services_title": "Services Deployed",
+    "services_desc": "Docker Compose, Traefik, GitLab CI/CD, Grafana+Prometheus monitoring",
+    "security_title": "Security Implementations",
+    "security_desc": "Sigma Rules Engine, ML attack detection, encryption, hardware licensing"
+  },
   "sections": {
     "featured": "Featured Projects",
     "featured_subtitle": "Commercial products and research projects",

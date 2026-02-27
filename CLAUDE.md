@@ -5,43 +5,54 @@
 ## Стек технологий
 
 ### Core
-- **Nuxt 3** — режим SSG (`nuxi generate`)
+- **Nuxt 3** — режим SSG (`nuxi generate`), `srcDir: 'app/'`
 - **Vue 3** — Composition API + `<script setup>`
 - **TypeScript**
 
 ### Стилизация
-- **Tailwind CSS v4** — через `@nuxtjs/tailwindcss`
+- **Tailwind CSS v4** — через `@nuxtjs/tailwindcss` + `@tailwindcss/typography`
 - Тема оформления — тёмная (единственная, без переключателя)
+- Кастомная дизайн-система в `tailwind.config.ts`:
+  - Цвета: `primary` (фиолетовый #6C63FF), `surface` (чёрно-серые оттенки)
+  - Шрифты: `Sora` (sans/display), `JetBrains Mono` (mono)
+  - Кастомные fontSize: `display-hero`, `display-xl/lg/md/sm`, `marquee`
+  - Кастомные borderRadius: `card`, `card-inner`, `button`, `badge`
+  - Анимации: `shimmer`, `float`, `pulse-slow`, `spin-slow`
 
 ### Контент
 - **@nuxt/content** — Markdown-контент для страниц проектов и блога
+- Подсветка синтаксиса: `github-dark` (Python, TS, JS, Bash, YAML, JSON, SQL, Dockerfile)
 
 ### Интернационализация
 - **@nuxtjs/i18n**
 - Стратегия: `prefix_except_default`
 - Язык по умолчанию: русский (`ru`)
 - Второй язык: английский (`en`)
-- Маршруты: `/about`, `/blog` (рус.) → `/en/about`, `/en/blog` (англ.)
+- Маршруты: `/about`, `/blog`, `/projects` (рус.) → `/en/about`, `/en/blog`, `/en/projects` (англ.)
 - Переключатель языка на странице — мгновенная смена через `switchLocalePath()`
-- Переводы хранятся в JSON-файлах (`locales/ru.json`, `locales/en.json`)
+- Переводы хранятся в JSON-файлах (`app/locales/ru.json`, `app/locales/en.json`)
 
 ### Анимации
 - **GSAP** — все плагины (ScrollTrigger, SplitText, ScrollSmoother, Flip, DrawSVG и др.)
-- Регистрация плагинов через Nuxt-plugin (`plugins/gsap.client.ts`)
+- Регистрация плагинов через Nuxt-plugin (`app/plugins/gsap.client.ts`)
 
 ### Иконки
-- **@nuxt/icon** — Iconify (200k+ иконок)
+- **@nuxt/icon** — Iconify (коллекции: `mdi`, `ph`, `simple-icons`, `noto`)
 
 ### SEO
-- **@nuxtjs/seo** — sitemap, robots.txt, OG-метатеги
+- OG-метатеги через `app.head` в `nuxt.config.ts`
 - `<html lang>` автоматически через i18n
-- hreflang-теги для мультиязычности
 
 ### Деплой
-- **GitHub Actions** → GitHub Pages
+- **GitHub Actions** (`.github/workflows/deploy.yml`) → GitHub Pages
 - Команда сборки: `nuxi generate`
-- Выходная директория: `.output/public`
+- Выходная директория: `.output/public` (симлинк `dist`)
 - `baseURL: '/portfolio/'`
+
+## Git-ветки
+- `main` — продакшен
+- `dev` — разработка
+- `glass` — текущая ветка (дизайн в стиле glass)
 
 ## Ограничения GitHub Pages (учтены в стеке)
 - Только статика — никакого SSR, API-роутов, серверных middleware
@@ -53,50 +64,69 @@
 
 ## Структура проекта
 ```
-├── app/                   # Исходный код (srcDir)
-│   ├── app.vue            # Корневой компонент
-│   ├── error.vue          # Страница ошибки
-│   ├── assets/            # Стили, шрифты, статичные ресурсы
-│   ├── components/        # Vue-компоненты
-│   ├── composables/       # Композиции (useGsap и др.)
-│   ├── layouts/           # Layouts (default)
-│   ├── pages/             # Страницы (файловая маршрутизация)
-│   ├── plugins/           # Nuxt-плагины (gsap.client.ts)
-│   └── types/             # TypeScript-типы
-├── content/               # Markdown-контент (@nuxt/content)
-│   ├── ru/                # Русскоязычный контент
-│   │   ├── blog/
-│   │   └── projects/
-│   └── en/                # Англоязычный контент
-│       ├── blog/
-│       └── projects/
-├── locales/               # Переводы i18n
-│   ├── ru.json
-│   └── en.json
-├── public/                # Статичные файлы (favicon, og-images)
-├── docs/                  # Документация и справочные материалы
-├── .github/workflows/     # GitHub Actions
-├── nuxt.config.ts         # Конфигурация Nuxt (srcDir: 'app/')
+├── app/                        # Исходный код (srcDir)
+│   ├── app.vue                 # Корневой компонент
+│   ├── error.vue               # Страница ошибки
+│   ├── assets/css/             # Стили (main.css, tailwind.css)
+│   ├── components/
+│   │   ├── animation/          # AnimatedText, GridBackground, ScrollReveal
+│   │   ├── layout/             # TheHeader, TheFooter, TheNavigation, TheMobileMenu, LanguageSwitcher
+│   │   ├── project/            # ProjectCard, ProjectFilter, ProjectGrid
+│   │   ├── sections/           # HeroSection, FeaturedProjects, FeaturedProjectCard, SkillsSection, StatsSection, MarqueeSection, ContactSection
+│   │   └── ui/                 # UiBadge, UiButton, UiCard, UiDivider, UiSkillTag
+│   ├── composables/            # useGsap, useScrollAnimation
+│   ├── content/                # Markdown-контент (@nuxt/content)
+│   │   ├── ru/                 # Русскоязычный контент
+│   │   │   ├── blog/
+│   │   │   └── projects/       # 19 проектов
+│   │   └── en/                 # Англоязычный контент
+│   │       ├── blog/
+│   │       └── projects/       # 19 проектов
+│   ├── layouts/                # default.vue
+│   ├── locales/                # ru.json, en.json
+│   ├── pages/
+│   │   ├── index.vue           # Главная
+│   │   ├── about.vue           # О себе
+│   │   ├── blog/               # index.vue, [slug].vue
+│   │   └── projects/           # index.vue, [slug].vue
+│   ├── plugins/                # gsap.client.ts
+│   ├── public/                 # favicon.svg
+│   └── types/                  # project.ts
+├── docs/                       # Документация и референсы
+│   ├── design-brief.md         # Дизайн-бриф проекта
+│   ├── portfolio-inspiration.md # Вдохновение для портфолио
+│   ├── glass/                  # Референсы glass-дизайна (Linear, Vercel, Reflect и др.)
+│   └── ui_ux_tips_and_tricks/  # Конспекты по UI/UX
+├── project_analyze_results/    # Аналитика проектов (исходные данные для контента)
+├── .github/workflows/          # deploy.yml
+├── nuxt.config.ts
 ├── tailwind.config.ts
+├── tsconfig.json
 └── package.json
 ```
 
-## Справочные материалы по UI/UX дизайну
+## Справочные материалы
 
-В `docs/ui_ux_tips_and_tricks/` хранятся конспекты видеоуроков по UI/UX дизайну. Используй их как референс при создании компонентов, анимаций и визуального оформления:
+### UI/UX дизайн (`docs/ui_ux_tips_and_tricks/`)
+Конспекты видеоуроков — референс при создании компонентов, анимаций и визуального оформления:
+- **11 Micro Animations...** — hover-эффекты, toast-уведомления, анимации клавиш
+- **4 UI Design Hacks...** — контекстные иллюстрации, doodle-элементы, декоративные акценты
+- **7 UI UX mistakes...** — типичные ошибки (user flow, состояния, навигация)
+- **How to think like a GENIUS...** — user intent, паттерны компоновки
+- **The 7 Color Mistakes...** — правило 60-30-10, тёмная тема, состояния элементов
+- **The 8 UI UX Cheat Codes...** — кернинг, вложенные скругления, letter-spacing
+- **Top 5 Advanced UX UI...** — персонализация, адаптивный поиск
 
-- **11 Micro Animations That Will Instantly Level Up Your UI.txt** — 11 микроанимаций (hover-эффекты кнопок, toast-уведомления, анимации клавиш и др.) с примерами из Linear, Apple, Vercel
-- **4 UI Design Hacks to KILL boring designs.txt** — 4 приёма для оживления скучного дизайна: контекстные иллюстрации, doodle-элементы, декоративные акценты
-- **7 UI UX mistakes that SCREAM you're a beginner.txt** — 7 типичных ошибок начинающих дизайнеров (user flow, состояния, навигация) с примерами до/после
-- **How to think like a GENIUS UI UX designer.txt** — принципы проектирования: user intent, устоявшиеся паттерны компоновки, множественные намерения пользователя
-- **The 7 Color Mistakes that RUIN your UI Designs.txt** — ошибки в работе с цветом: правило 60-30-10, построение тёмной темы, состояния элементов
-- **The 8 UI UX Cheat Codes for INSTANTLY Better Designs.txt** — 8 быстрых правил: кернинг крупного текста, вложенные скругления, letter-spacing и др.
-- **Top 5 Advanced UX UI Design Tips and Tricks - Part 3.txt** — продвинутые приёмы: персонализация по сегментам, адаптивный поиск, пост-покупочный UX
+### Glass-дизайн (`docs/glass/`)
+Детальные разборы референсных сайтов для glass-стиля: Linear, Vercel, Reflect, Robinhood, Spotify Wrapped, Tomorrow.io, Apple Liquid Glass.
+
+### Аналитика проектов (`project_analyze_results/`)
+Подробные аналитические документы по проектам — используются как исходные данные при написании Markdown-контента для `app/content/`.
 
 ## Правила разработки
 - Весь UI — тёмная тема, без light mode
 - Компоненты — `<script setup lang="ts">` + Composition API
 - GSAP-анимации — только в `.client.ts` плагинах и `onMounted()`
-- Контент блога и проектов — Markdown в `content/`
+- Контент блога и проектов — Markdown в `app/content/`
 - Все тексты интерфейса — через i18n (`$t('key')`)
 - Коммиты — на русском языке

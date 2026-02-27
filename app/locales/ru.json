@@ -21,6 +21,22 @@
     "experience": "лет опыта",
     "technologies": "технологий"
   },
+  "impact": {
+    "title": "Достижения",
+    "subtitle": "Реальные метрики из коммерческих проектов",
+    "cloud_title": "Микросервисов",
+    "cloud_desc": "Облачная ASR-платформа с GPU inference и real-time стримингом",
+    "contracts_title": "Risk-факторов",
+    "contracts_desc": "AI-анализ контрактов с Dual-LLM верификацией и fine-tuned моделями",
+    "models_title": "ML-моделей",
+    "models_desc": "Whisper, BERT, CatBoost, YOLOv8, Qwen, Llama — в production",
+    "finetune_title": "Fine-tuned LLM",
+    "finetune_desc": "Qwen2.5 (0.5B–32B) с QLoRA, Unsloth, опубликованы на HF Hub",
+    "services_title": "Сервисов задеплоено",
+    "services_desc": "Docker Compose, Traefik, GitLab CI/CD, мониторинг Grafana+Prometheus",
+    "security_title": "Реализаций безопасности",
+    "security_desc": "Sigma Rules Engine, ML-детекция атак, шифрование, аппаратные лицензии"
+  },
   "sections": {
     "featured": "Избранные проекты",
     "featured_subtitle": "Коммерческие продукты и исследовательские проекты",

@@ -13,6 +13,7 @@ useSeoMeta({
   <div>
     <SectionsHeroSection />
     <SectionsFeaturedProjects />
+    <SectionsImpactSection />
     <SectionsSkillsSection />
     <SectionsMarqueeSection />
     <SectionsContactSection />
