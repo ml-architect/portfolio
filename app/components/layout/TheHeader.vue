@@ -7,7 +7,7 @@ const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
 const { data: projectCount } = await useAsyncData(
-  `project-count-${locale.value}`,
+  'project-count',
   () => queryContent('/projects')
     .where({ _locale: locale.value })
     .count(),
@@ -56,7 +56,7 @@ watch(isMobileMenuOpen, (open) => {
     :class="[
       'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
       isScrolled
-        ? 'bg-black/80 backdrop-blur-xl'
+        ? 'bg-white/[0.03] backdrop-blur-xl border-b border-white/[0.06] shadow-[0_1px_12px_rgba(0,0,0,0.3)]'
         : 'bg-transparent',
     ]"
   >

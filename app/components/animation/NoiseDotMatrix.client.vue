@@ -2,8 +2,6 @@
 const canvasRef = ref<HTMLCanvasElement | null>(null)
 const containerRef = ref<HTMLElement | null>(null)
 let animationId = 0
-let mouseX = -1000
-let mouseY = -1000
 
 // Simplex noise implementation (compact, no dependencies)
 // Based on Stefan Gustavson's simplex noise
@@ -76,7 +74,10 @@ function simplex3D(xin: number, yin: number, zin: number): number {
 
 seedNoise()
 
-onMounted(() => {
+onMounted(async () => {
+  // Wait for nextTick to ensure .client.vue refs are ready after SSR hydration
+  await nextTick()
+
   const canvas = canvasRef.value
   const container = containerRef.value
   if (!canvas || !container) return
@@ -91,8 +92,6 @@ onMounted(() => {
   const maxRadiusAdd = 2.5
   const noiseScale = 0.025
   const timeSpeed = 0.0004
-  const mouseRadius = 150
-  const mouseStrength = 3
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2)
@@ -106,20 +105,6 @@ onMounted(() => {
   }
 
   resize()
-
-  function handleMouseMove(e: MouseEvent) {
-    const rect = container!.getBoundingClientRect()
-    mouseX = e.clientX - rect.left
-    mouseY = e.clientY - rect.top
-  }
-
-  function handleMouseLeave() {
-    mouseX = -1000
-    mouseY = -1000
-  }
-
-  container.addEventListener('mousemove', handleMouseMove)
-  container.addEventListener('mouseleave', handleMouseLeave)
 
   const resizeObserver = new ResizeObserver(resize)
   resizeObserver.observe(container)
@@ -141,18 +126,8 @@ onMounted(() => {
         // Normalize from [-1,1] to [0,1]
         const nNorm = (n + 1) * 0.5
 
-        let radius = baseRadius + nNorm * maxRadiusAdd
+        const radius = baseRadius + nNorm * maxRadiusAdd
         let alpha = 0.04 + nNorm * 0.12
-
-        // Mouse interaction — dots near cursor grow and brighten
-        const dx = x - mouseX
-        const dy = y - mouseY
-        const dist = Math.sqrt(dx * dx + dy * dy)
-        if (dist < mouseRadius) {
-          const proximity = 1 - dist / mouseRadius
-          radius += proximity * mouseStrength
-          alpha += proximity * 0.15
-        }
 
         // Edge fade — dots near edges of container are more transparent
         const edgeFade = Math.min(
@@ -166,10 +141,10 @@ onMounted(() => {
 
         if (alpha < 0.01) continue
 
-        // Primary color: #6C63FF = rgb(108, 99, 255)
+        // Primary color: #22C55E = rgb(34, 197, 94)
         ctx!.beginPath()
         ctx!.arc(x, y, radius, 0, Math.PI * 2)
-        ctx!.fillStyle = `rgba(108, 99, 255, ${alpha})`
+        ctx!.fillStyle = `rgba(34, 197, 94, ${alpha})`
         ctx!.fill()
       }
     }
@@ -181,8 +156,6 @@ onMounted(() => {
 
   onUnmounted(() => {
     cancelAnimationFrame(animationId)
-    container.removeEventListener('mousemove', handleMouseMove)
-    container.removeEventListener('mouseleave', handleMouseLeave)
     resizeObserver.disconnect()
   })
 })
@@ -191,7 +164,7 @@ onMounted(() => {
 <template>
   <div
     ref="containerRef"
-    class="absolute inset-0 pointer-events-auto z-0 overflow-hidden"
+    class="absolute inset-0 pointer-events-none z-0 overflow-hidden"
     aria-hidden="true"
   >
     <canvas ref="canvasRef" class="absolute inset-0" />

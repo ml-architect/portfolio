@@ -3,7 +3,7 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const { data: posts } = await useAsyncData(
-  `blog-posts-${locale.value}`,
+  'blog-posts',
   () =>
     queryContent('/blog')
       .where({ _locale: locale.value })

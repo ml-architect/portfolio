@@ -91,7 +91,7 @@ function onMouseLeave() {
       :to="localePath(project._path ?? '/')"
       :class="[
         'group block h-full rounded-card border transition-colors duration-300',
-        'bg-surface-800 border-surface-700/50 hover:border-primary-500/30',
+        'bg-white/[0.03] backdrop-blur-xl border-white/[0.08] hover:border-white/[0.15] hover:bg-white/[0.05]',
         isHovered ? 'shimmer-border' : '',
         variant === 'main' ? 'p-8' : 'p-6',
         variant === 'horizontal' ? 'md:px-8' : '',

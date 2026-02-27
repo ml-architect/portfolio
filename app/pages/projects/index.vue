@@ -4,7 +4,7 @@ const { t, locale } = useI18n()
 const activeFilter = ref('all')
 
 const { data: projects } = await useAsyncData(
-  `all-projects-${locale.value}`,
+  'all-projects',
   () =>
     queryContent('/projects')
       .where({ _locale: locale.value })

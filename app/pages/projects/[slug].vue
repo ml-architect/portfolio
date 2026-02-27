@@ -6,7 +6,7 @@ const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
 const { data: project } = await useAsyncData(
-  `project-${slug.value}-${locale.value}`,
+  `project-${slug.value}`,
   () =>
     queryContent('/projects')
       .where({ _locale: locale.value, _path: { $contains: slug.value } })
@@ -16,7 +16,7 @@ const { data: project } = await useAsyncData(
 
 // Prev/Next navigation
 const { data: surround } = await useAsyncData(
-  `project-surround-${slug.value}-${locale.value}`,
+  `project-surround-${slug.value}`,
   () =>
     queryContent('/projects')
       .where({ _locale: locale.value })

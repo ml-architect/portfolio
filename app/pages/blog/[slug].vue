@@ -6,7 +6,7 @@ const route = useRoute()
 const slug = computed(() => route.params.slug as string)
 
 const { data: post } = await useAsyncData(
-  `blog-post-${slug.value}-${locale.value}`,
+  `blog-post-${slug.value}`,
   () =>
     queryContent('/blog')
       .where({ _locale: locale.value, _path: { $contains: slug.value } })

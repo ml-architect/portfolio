@@ -68,6 +68,7 @@ onMounted(() => {
       gsap.to(obj, {
         val: cards[index].value,
         duration: 2,
+        delay: index * 0.15,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
@@ -102,11 +103,11 @@ onMounted(() => {
       <div
         v-for="(card, index) in cards"
         :key="card.titleKey"
-        class="impact-card bg-surface-800/50 backdrop-blur-sm border border-surface-700/50 rounded-card p-6 hover:border-primary-500/30 transition-all duration-300"
+        class="impact-card bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-6 hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
       >
         <!-- Icon -->
-        <div class="w-10 h-10 rounded-full bg-primary-500/10 flex items-center justify-center mb-4">
-          <Icon :name="card.icon" size="24" class="text-primary-400" />
+        <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
+          <Icon :name="card.icon" size="24" class="text-green-400" />
         </div>
 
         <!-- Number -->

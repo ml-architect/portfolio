@@ -6,7 +6,7 @@ const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
 const { data: projects } = await useAsyncData(
-  `featured-projects-${locale.value}`,
+  'featured-projects',
   () =>
     queryContent('/projects')
       .where({ _locale: locale.value, featured: true })
