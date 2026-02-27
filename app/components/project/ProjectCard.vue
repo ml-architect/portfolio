@@ -29,13 +29,13 @@ const hasMoreTags = computed(() => {
   <NuxtLink
     :to="project._path"
     class="
-      block bg-surface-800 rounded-card border border-[#1e1e1e]
+      flex flex-col h-full bg-surface-800 rounded-card border border-[#1e1e1e]
       p-6 hover:border-primary-500/30 transition-all duration-300
       hover:-translate-y-0.5
     "
   >
     <!-- Category badge -->
-    <UiBadge :variant="project.category" size="sm">
+    <UiBadge :variant="project.category" size="sm" class="self-start">
       {{ project.category === 'commercial' ? $t('filter.commercial') : $t('filter.research') }}
     </UiBadge>
 
@@ -58,28 +58,28 @@ const hasMoreTags = computed(() => {
     </h3>
 
     <!-- Description -->
-    <p class="text-sm text-[#545454] mt-2 line-clamp-2">
+    <p class="text-sm text-[#545454] mt-2 line-clamp-2 flex-1">
       {{ project.description }}
     </p>
 
     <!-- Bottom: tags + date -->
     <div class="flex items-center justify-between mt-4 pt-4 border-t border-[#1e1e1e]">
-      <div class="flex flex-wrap gap-1.5">
+      <div class="flex gap-1.5 overflow-hidden min-w-0">
         <span
           v-for="tag in visibleTags"
           :key="tag"
-          class="text-xs text-[#545454] bg-[#1e1e1e] px-2 py-0.5 rounded"
+          class="text-xs text-[#545454] bg-[#1e1e1e] px-2 py-0.5 rounded shrink-0"
         >
           {{ tag }}
         </span>
         <span
           v-if="hasMoreTags"
-          class="text-xs text-[#545454]"
+          class="text-xs text-[#545454] shrink-0"
         >
           +{{ project.tags.length - 4 }}
         </span>
       </div>
-      <span class="text-xs text-[#545454] whitespace-nowrap ml-3">
+      <span class="text-xs text-[#545454] whitespace-nowrap ml-3 shrink-0">
         {{ formattedDate }}
       </span>
     </div>

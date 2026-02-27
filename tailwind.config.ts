@@ -41,7 +41,7 @@ export default <Config>{
         display: ['Sora', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        'display-hero': ['clamp(3.5rem, 9vw, 9rem)', { lineHeight: '0.9', letterSpacing: '-0.04em' }],
+        'display-hero': ['clamp(4rem, 10vw, 10rem)', { lineHeight: '0.9', letterSpacing: '-0.04em' }],
         'display-xl': ['4.5rem', { lineHeight: '1.0', letterSpacing: '-0.03em' }],
         'display-lg': ['3.5rem', { lineHeight: '1.05', letterSpacing: '-0.02em' }],
         'display-md': ['2.5rem', { lineHeight: '1.15', letterSpacing: '-0.02em' }],

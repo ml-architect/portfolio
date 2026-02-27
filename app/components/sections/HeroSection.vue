@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { gsap } from 'gsap'
+import { SplitText } from 'gsap/SplitText'
 
 const { t } = useI18n()
 const sectionRef = ref<HTMLElement | null>(null)
@@ -10,12 +11,37 @@ onMounted(() => {
   const ctx = gsap.context(() => {
     const tl = gsap.timeline({ defaults: { ease: 'power3.out' } })
 
-    // Hero title lines animate in
-    tl.from('.hero-line', {
-      y: 120,
-      opacity: 0,
-      duration: 1.2,
-      stagger: 0.15,
+    // Split each hero line into characters for blur-in effect
+    SplitText.create('.hero-line-1', {
+      type: 'chars',
+      autoSplit: true,
+      onSplit(self) {
+        gsap.set(self.chars, { opacity: 0, filter: 'blur(20px)', y: 20 })
+        tl.to(self.chars, {
+          opacity: 1,
+          filter: 'blur(0px)',
+          y: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: 'power2.out',
+        }, 0.1)
+      },
+    })
+
+    SplitText.create('.hero-line-2', {
+      type: 'chars',
+      autoSplit: true,
+      onSplit(self) {
+        gsap.set(self.chars, { opacity: 0, filter: 'blur(20px)', y: 20 })
+        tl.to(self.chars, {
+          opacity: 1,
+          filter: 'blur(0px)',
+          y: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: 'power2.out',
+        }, 0.3)
+      },
     })
 
     // Scroll indicator fades in
@@ -23,14 +49,14 @@ onMounted(() => {
       opacity: 0,
       y: 20,
       duration: 0.8,
-    }, '-=0.5')
+    }, '-=0.3')
 
     // Bottom bar slides up
     tl.from('.hero-bottom', {
       y: 30,
       opacity: 0,
       duration: 0.8,
-    }, '-=0.3')
+    }, '-=0.5')
   }, sectionRef.value)
 
   onUnmounted(() => ctx.revert())
@@ -42,12 +68,15 @@ onMounted(() => {
     ref="sectionRef"
     class="hero-section relative flex flex-col justify-between bg-surface-950"
   >
+    <!-- Animated background -->
+    <AnimationNoiseDotMatrix />
+
     <!-- Main title area -->
-    <div class="flex-1 flex items-center w-full px-6 md:px-12 lg:px-16 min-h-0">
+    <div class="relative z-10 flex-1 flex items-center w-full px-6 md:px-12 lg:px-16 min-h-0">
       <div class="relative w-full">
         <h1 class="text-display-hero font-display font-semibold text-white tracking-tighter leading-none">
-          <span class="hero-line block">{{ t('hero.title') }}</span>
-          <span class="hero-line block">{{ t('hero.titleAccent') }}</span>
+          <span class="hero-line-1 block">{{ t('hero.title') }}</span>
+          <span class="hero-line-2 block">{{ t('hero.titleAccent') }}</span>
         </h1>
 
       </div>
@@ -56,7 +85,7 @@ onMounted(() => {
     <!-- Scroll indicator — right edge -->
     <a
       href="#projects"
-      class="scroll-indicator group absolute right-6 md:right-10 bottom-20 hidden lg:flex flex-col items-center gap-3"
+      class="scroll-indicator group absolute z-10 right-6 md:right-10 bottom-20 hidden lg:flex flex-col items-center gap-3"
       :aria-label="t('common.scroll_down')"
     >
       <!-- Mouse icon -->
@@ -76,7 +105,7 @@ onMounted(() => {
     </a>
 
     <!-- Bottom bar -->
-    <div class="hero-bottom max-w-6xl mx-auto w-full px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 shrink-0">
+    <div class="hero-bottom relative z-10 max-w-6xl mx-auto w-full px-6 flex flex-col md:flex-row justify-between items-start md:items-end gap-4 shrink-0">
       <!-- Left: Let's Talk + email -->
       <div>
         <p class="text-xl font-medium text-white">
