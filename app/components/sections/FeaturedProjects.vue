@@ -70,14 +70,10 @@ onMounted(() => {
   <section id="projects" ref="sectionRef" class="max-w-6xl mx-auto py-24 px-6">
     <!-- Header -->
     <div class="projects-header flex flex-col md:flex-row justify-between md:items-end gap-4">
-      <div>
-        <h2 class="text-display-md font-semibold text-white">
-          {{ t('sections.featured') }}
-        </h2>
-        <p class="text-sm text-[#545454] max-w-md mt-2">
-          {{ t('sections.featured_subtitle') }}
-        </p>
-      </div>
+      <UiSectionHeader
+        :title="t('sections.featured')"
+        :subtitle="t('sections.featured_subtitle')"
+      />
       <NuxtLink
         :to="localePath('/projects')"
         class="text-white hover:text-gray-400 transition-colors text-sm"

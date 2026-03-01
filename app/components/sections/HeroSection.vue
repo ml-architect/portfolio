@@ -113,14 +113,14 @@ onMounted(() => {
         </p>
         <a
           href="mailto:mattias666@mail.ru"
-          class="text-sm text-[#545454] hover:text-white/70 transition-colors"
+          class="text-sm text-text-muted hover:text-white/70 transition-colors"
         >
           mattias666@mail.ru
         </a>
       </div>
 
       <!-- Right: subtitle paragraph -->
-      <p class="max-w-md text-sm text-[#545454] text-left md:text-right leading-relaxed">
+      <p class="max-w-md text-sm text-text-muted text-left md:text-right leading-relaxed">
         {{ t('hero.subtitle') }}
       </p>
     </div>

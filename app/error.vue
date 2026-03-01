@@ -17,10 +17,10 @@ const handleError = () => clearError({ redirect: localePath('/') })
       <p class="text-8xl font-bold gradient-text mb-6">
         {{ error.statusCode }}
       </p>
-      <h1 class="text-2xl font-semibold text-[#F0F0F8] mb-3">
+      <h1 class="text-2xl font-semibold text-text-light mb-3">
         {{ t('common.not_found') }}
       </h1>
-      <p class="text-[#A0A3BD] mb-8">
+      <p class="text-text-secondary mb-8">
         {{ t('common.not_found_text') }}
       </p>
       <button

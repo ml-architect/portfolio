@@ -34,7 +34,7 @@ const filters: FilterOption[] = [
       :class="
         modelValue === filter.value
           ? 'bg-primary-500/10 text-primary-400 border-primary-500/20'
-          : 'bg-surface-800 text-[#545454] border-[#1e1e1e] hover:text-white hover:border-[#333]'
+          : 'bg-surface-800 text-text-muted border-surface-card hover:text-white hover:border-surface-500'
       "
       @click="emit('update:modelValue', filter.value)"
     >

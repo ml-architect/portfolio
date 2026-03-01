@@ -7,7 +7,7 @@ export default defineNuxtPlugin(() => {
   gsap.registerPlugin(ScrollTrigger, Flip, SplitText)
 
   gsap.defaults({
-    ease: 'power3.out',
+    ease: 'power2.out',
     duration: 0.8,
   })
 

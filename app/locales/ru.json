@@ -6,12 +6,9 @@
     "about": "Обо мне"
   },
   "hero": {
-    "badge": "ML-инженер & Архитектор",
     "title": "AI Systems&",
     "titleAccent": "Architecture",
     "subtitle": "Backend-разработчик и ML-инженер. Проектирую production-ready AI-платформы, микросервисные архитектуры и системы обработки данных.",
-    "cta_projects": "Смотреть проекты",
-    "cta_about": "Обо мне",
     "lets_talk": "Обсудим ваш проект?",
     "email": "mattias666{'@'}mail.ru"
   },
@@ -45,7 +42,6 @@
     "contact": "Связаться",
     "contact_subtitle": "Открыт к предложениям и интересным проектам",
     "all_projects": "Все проекты",
-    "view_project": "Подробнее",
     "view_all": "Смотреть все"
   },
   "project": {
@@ -125,7 +121,6 @@
   },
   "common": {
     "scroll_down": "Прокрутить вниз",
-    "loading": "Загрузка...",
     "not_found": "Страница не найдена",
     "not_found_text": "Запрашиваемая страница не существует или была перемещена.",
     "back_home": "На главную"

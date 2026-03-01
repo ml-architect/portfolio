@@ -6,12 +6,9 @@
     "about": "About"
   },
   "hero": {
-    "badge": "ML Engineer & Architect",
     "title": "AI Systems&",
     "titleAccent": "Architecture",
     "subtitle": "Backend developer and ML engineer. Designing production-ready AI platforms, microservice architectures, and data processing systems.",
-    "cta_projects": "View Projects",
-    "cta_about": "About Me",
     "lets_talk": "Let's Discuss Your Project",
     "email": "mattias666{'@'}mail.ru"
   },
@@ -45,7 +42,6 @@
     "contact": "Get in Touch",
     "contact_subtitle": "Open to opportunities and interesting projects",
     "all_projects": "All Projects",
-    "view_project": "Learn More",
     "view_all": "View All"
   },
   "project": {
@@ -125,7 +121,6 @@
   },
   "common": {
     "scroll_down": "Scroll down",
-    "loading": "Loading...",
     "not_found": "Page Not Found",
     "not_found_text": "The page you requested does not exist or has been moved.",
     "back_home": "Go Home"

@@ -23,7 +23,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <section ref="sectionRef" class="overflow-hidden py-20 border-y border-[#1e1e1e]">
+  <section ref="sectionRef" class="overflow-hidden py-20 border-y border-surface-700">
     <div class="marquee-track whitespace-nowrap">
       <span
         v-for="i in 2"

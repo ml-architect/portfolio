@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
+const { formatDate } = useFormatDate()
 
 const slug = computed(() => route.params.slug as string)
 
@@ -18,19 +19,13 @@ const { data: post } = await useAsyncData(
 
 const formattedDate = computed(() => {
   if (!post.value?.date) return ''
-  return new Intl.DateTimeFormat(locale.value === 'ru' ? 'ru-RU' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(post.value.date))
+  return formatDate(post.value.date, 'full')
 })
 
-useSeoMeta({
-  title: () => post.value ? `${post.value.title} — ML Architect` : 'ML Architect',
-  description: () => post.value?.description || '',
-  ogTitle: () => post.value ? `${post.value.title} — ML Architect` : 'ML Architect',
-  ogDescription: () => post.value?.description || '',
-})
+useSeo(
+  post.value ? `${post.value.title} — ML Architect` : 'ML Architect',
+  post.value?.description || '',
+)
 
 const pageRef = ref<HTMLElement | null>(null)
 
@@ -84,16 +79,11 @@ onMounted(() => {
 <template>
   <div ref="pageRef" class="max-w-4xl mx-auto py-24 px-6">
     <!-- Back link -->
-    <NuxtLink
+    <UiBackLink
       :to="localePath('/blog')"
-      class="
-        blog-back-link inline-flex items-center gap-2 text-sm text-[#545454]
-        hover:text-primary-400 transition-colors mb-8
-      "
-    >
-      <Icon name="ph:arrow-left" size="16" />
-      {{ t('blog.title') }}
-    </NuxtLink>
+      :label="t('blog.title')"
+      class="blog-back-link mb-8"
+    />
 
     <template v-if="post">
       <!-- Header -->
@@ -101,7 +91,7 @@ onMounted(() => {
         <h1 class="text-display-md text-white font-display font-bold mb-4">
           {{ post.title }}
         </h1>
-        <div class="flex items-center gap-4 text-sm text-[#545454]">
+        <div class="flex items-center gap-4 text-sm text-text-muted">
           <span v-if="formattedDate" class="flex items-center gap-2">
             <Icon name="ph:calendar" size="16" />
             {{ formattedDate }}
@@ -116,9 +106,10 @@ onMounted(() => {
     </template>
 
     <!-- Not found -->
-    <div v-else class="text-center py-16">
-      <Icon name="ph:warning" size="48" class="text-[#545454] mb-4" />
-      <p class="text-[#545454]">{{ t('common.not_found') }}</p>
-    </div>
+    <UiEmptyState
+      v-else
+      icon="ph:warning"
+      :message="t('common.not_found')"
+    />
   </div>
 </template>

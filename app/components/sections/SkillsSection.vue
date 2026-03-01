@@ -75,7 +75,7 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" class="max-w-6xl mx-auto py-24 px-6">
     <h2 class="expertise-title text-display-md font-semibold text-white mb-12">
-      Expertise
+      {{ t('sections.skills') }}
     </h2>
 
     <div class="expertise-grid grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
@@ -83,7 +83,7 @@ onMounted(() => {
         <h3 class="text-display-sm font-medium text-white">
           &middot; {{ item.title }}
         </h3>
-        <p class="text-[#545454] mt-3 leading-relaxed">
+        <p class="text-text-muted mt-3 leading-relaxed">
           {{ item.description }}
         </p>
       </div>

@@ -8,8 +8,8 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { locale } = useI18n()
 const localePath = useLocalePath()
+const { formatDate } = useFormatDate()
 
 const cardRef = ref<HTMLElement | null>(null)
 const isHovered = ref(false)
@@ -21,10 +21,7 @@ onMounted(() => {
 
 const formattedDate = computed(() => {
   if (!props.project.date) return ''
-  return new Intl.DateTimeFormat(locale.value === 'ru' ? 'ru-RU' : 'en-US', {
-    year: 'numeric',
-    month: 'short',
-  }).format(new Date(props.project.date))
+  return formatDate(props.project.date, 'month-short-year')
 })
 
 const maxTags = computed(() => {
@@ -105,7 +102,7 @@ function onMouseLeave() {
           <UiBadge :variant="project.category" size="sm">
             {{ project.category === 'commercial' ? $t('filter.commercial') : $t('filter.research') }}
           </UiBadge>
-          <span class="text-xs text-[#545454]">{{ formattedDate }}</span>
+          <span class="text-xs text-text-muted">{{ formattedDate }}</span>
         </div>
 
         <!-- Title -->
@@ -121,7 +118,7 @@ function onMouseLeave() {
         <!-- Description -->
         <p
           :class="[
-            'text-sm text-[#8a8a8a] mt-2',
+            'text-sm text-text-muted mt-2',
             variant === 'main' ? 'line-clamp-3' : 'line-clamp-2',
           ]"
         >
@@ -129,7 +126,7 @@ function onMouseLeave() {
         </p>
 
         <!-- Role -->
-        <p v-if="project.role" class="text-xs text-[#545454] mt-3">
+        <p v-if="project.role" class="text-xs text-text-muted mt-3">
           {{ project.role }}
         </p>
       </div>
@@ -145,13 +142,13 @@ function onMouseLeave() {
           <span
             v-for="tag in visibleTags"
             :key="tag"
-            class="text-xs text-[#8a8a8a] bg-surface-700/60 px-2 py-0.5 rounded"
+            class="text-xs text-text-muted bg-surface-700/60 px-2 py-0.5 rounded"
           >
             {{ tag }}
           </span>
           <span
             v-if="hasMoreTags"
-            class="text-xs text-[#545454]"
+            class="text-xs text-text-muted"
           >
             +{{ remainingTags }}
           </span>

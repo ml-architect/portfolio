@@ -92,21 +92,19 @@ onMounted(() => {
 <template>
   <section ref="sectionRef" class="max-w-6xl mx-auto py-24 px-6">
     <!-- Header -->
-    <div class="impact-header">
-      <h2 class="text-display-md font-semibold text-white">
-        {{ t('impact.title') }}
-      </h2>
-      <p class="text-sm text-[#545454] max-w-md mt-2">
-        {{ t('impact.subtitle') }}
-      </p>
-    </div>
+    <UiSectionHeader
+      :title="t('impact.title')"
+      :subtitle="t('impact.subtitle')"
+      class="impact-header"
+    />
 
     <!-- Grid -->
     <div class="impact-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">
-      <div
+      <UiCard
         v-for="(card, index) in cards"
         :key="card.titleKey"
-        class="impact-card bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-6 hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
+        variant="glass"
+        class="impact-card p-6"
       >
         <!-- Icon -->
         <div class="w-10 h-10 rounded-full bg-green-500/10 flex items-center justify-center mb-4">
@@ -120,15 +118,15 @@ onMounted(() => {
         </div>
 
         <!-- Title -->
-        <h3 class="text-sm text-[#A0A3BD] mt-2">
+        <h3 class="text-sm text-text-secondary mt-2">
           {{ t(card.titleKey) }}
         </h3>
 
         <!-- Description -->
-        <p class="text-xs text-[#6B6F8D] mt-1">
+        <p class="text-xs text-text-dimmed mt-1">
           {{ t(card.descKey) }}
         </p>
-      </div>
+      </UiCard>
     </div>
   </section>
 </template>

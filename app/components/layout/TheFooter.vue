@@ -12,15 +12,15 @@ const socialLinks = [
   <footer class="relative mt-24">
     <div class="max-w-6xl mx-auto px-6">
       <!-- Top border -->
-      <div class="border-t border-[#1e1e1e]" />
+      <div class="border-t border-surface-card" />
 
       <!-- Footer content -->
       <div
         class="flex flex-col sm:flex-row items-center justify-between gap-4 py-6"
       >
         <!-- Copyright -->
-        <p class="text-sm text-[#545454]">
-          2026 &copy; &mdash; Made by ML Architect
+        <p class="text-sm text-text-muted">
+          {{ t('footer.copyright', { year: new Date().getFullYear() }) }}
         </p>
 
         <!-- Social text links -->
@@ -31,7 +31,7 @@ const socialLinks = [
             :href="link.href"
             target="_blank"
             rel="noopener noreferrer"
-            class="text-sm text-[#545454] hover:text-white transition-colors duration-200"
+            class="text-sm text-text-muted hover:text-white transition-colors duration-200"
           >
             {{ link.label }}
           </a>

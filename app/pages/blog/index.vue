@@ -2,7 +2,7 @@
 import { gsap } from 'gsap'
 
 const { t, locale } = useI18n()
-const localePath = useLocalePath()
+const { formatDate } = useFormatDate()
 
 const { data: posts } = await useAsyncData(
   'blog-posts',
@@ -15,21 +15,7 @@ const { data: posts } = await useAsyncData(
   { watch: [locale], default: () => [] },
 )
 
-const formattedDate = (dateStr: string) => {
-  if (!dateStr) return ''
-  return new Intl.DateTimeFormat(locale.value === 'ru' ? 'ru-RU' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(dateStr))
-}
-
-useSeoMeta({
-  title: `${t('blog.title')} — ML Architect`,
-  description: t('blog.subtitle'),
-  ogTitle: `${t('blog.title')} — ML Architect`,
-  ogDescription: t('blog.subtitle'),
-})
+useSeo(`${t('blog.title')} — ML Architect`, t('blog.subtitle'))
 
 const pageRef = ref<HTMLElement | null>(null)
 
@@ -61,7 +47,7 @@ onMounted(() => {
       <h1 class="text-display-md text-white font-display font-bold mb-2">
         {{ t('blog.title') }}
       </h1>
-      <p class="text-lg text-[#545454]">
+      <p class="text-lg text-text-muted">
         {{ t('blog.subtitle') }}
       </p>
     </header>
@@ -79,13 +65,13 @@ onMounted(() => {
           class="block"
         >
           <UiCard class="p-6 h-full flex flex-col">
-            <span class="text-xs text-[#545454] mb-2">
-              {{ formattedDate(post.date) }}
+            <span class="text-xs text-text-muted mb-2">
+              {{ formatDate(post.date, 'full') }}
             </span>
             <h2 class="text-lg font-semibold text-white font-display mb-2">
               {{ post.title }}
             </h2>
-            <p class="text-sm text-[#545454] line-clamp-3 flex-1">
+            <p class="text-sm text-text-muted line-clamp-3 flex-1">
               {{ post.description }}
             </p>
             <span class="text-sm text-emerald-400 mt-4 inline-flex items-center gap-1">
@@ -98,11 +84,10 @@ onMounted(() => {
     </div>
 
     <!-- Empty state -->
-    <div v-else class="text-center py-16">
-      <Icon name="ph:article" size="48" class="text-[#545454] mb-4 opacity-50" />
-      <p class="text-[#545454] text-lg">
-        {{ t('blog.empty') }}
-      </p>
-    </div>
+    <UiEmptyState
+      v-else
+      icon="ph:article"
+      :message="t('blog.empty')"
+    />
   </div>
 </template>

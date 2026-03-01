@@ -33,6 +33,13 @@ export default <Config>{
           700: '#1e1e1e',
           600: '#2a2a2a',
           500: '#3a3a3a',
+          card: '#1e1e1e',
+        },
+        text: {
+          muted: '#545454',
+          dimmed: '#6B6F8D',
+          light: '#F0F0F8',
+          secondary: '#A0A3BD',
         },
       },
       fontFamily: {

@@ -23,12 +23,7 @@ const filteredProjects = computed(() => {
   )
 })
 
-useSeoMeta({
-  title: `${t('sections.all_projects')} — ML Architect`,
-  description: t('sections.featured_subtitle'),
-  ogTitle: `${t('sections.all_projects')} — ML Architect`,
-  ogDescription: t('sections.featured_subtitle'),
-})
+useSeo(`${t('sections.all_projects')} — ML Architect`, t('sections.featured_subtitle'))
 
 const pageRef = ref<HTMLElement | null>(null)
 
@@ -87,12 +82,10 @@ onMounted(() => {
     />
 
     <!-- Empty state -->
-    <div
+    <UiEmptyState
       v-else
-      class="text-center py-16 text-[#545454]"
-    >
-      <Icon name="ph:folder-open" size="48" class="mb-4 opacity-50" />
-      <p>{{ t('blog.empty') }}</p>
-    </div>
+      icon="ph:folder-open"
+      :message="t('blog.empty')"
+    />
   </div>
 </template>

@@ -1,10 +1,5 @@
 <script setup lang="ts">
-import type { RouteLocationRaw } from 'vue-router'
-
-interface NavLink {
-  label: string
-  to: RouteLocationRaw
-}
+import type { NavLink } from '~/types/navigation'
 
 const props = defineProps<{
   modelValue: boolean
@@ -15,7 +10,7 @@ const emit = defineEmits<{
   'update:modelValue': [value: boolean]
 }>()
 
-const route = useRoute()
+const { isActive } = useNavigation()
 
 function close(): void {
   emit('update:modelValue', false)
@@ -23,11 +18,6 @@ function close(): void {
 
 function onLinkClick(): void {
   close()
-}
-
-function isActive(to: RouteLocationRaw): boolean {
-  const path = typeof to === 'string' ? to : (to as { path: string }).path ?? ''
-  return route.path === path || route.path.startsWith(path + '/')
 }
 </script>
 
@@ -42,7 +32,7 @@ function isActive(to: RouteLocationRaw): boolean {
         <div class="flex justify-end p-5">
           <button
             type="button"
-            class="flex items-center justify-center w-10 h-10 rounded-button text-[#A0A3BD] hover:text-[#F0F0F8] hover:bg-surface-800 transition-colors duration-200"
+            class="flex items-center justify-center w-10 h-10 rounded-button text-text-secondary hover:text-text-light hover:bg-surface-800 transition-colors duration-200"
             aria-label="Close menu"
             @click="close"
           >
@@ -59,8 +49,8 @@ function isActive(to: RouteLocationRaw): boolean {
             :class="[
               'mobile-menu-link px-6 py-4 text-3xl font-semibold tracking-tight transition-colors duration-200',
               isActive(link.to)
-                ? 'text-[#F0F0F8]'
-                : 'text-[#6B6F8D] hover:text-[#F0F0F8]',
+                ? 'text-text-light'
+                : 'text-text-dimmed hover:text-text-light',
             ]"
             :style="{ transitionDelay: `${index * 60 + 80}ms` }"
             @click="onLinkClick"

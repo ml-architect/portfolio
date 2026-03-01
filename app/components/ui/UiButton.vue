@@ -20,9 +20,9 @@ const props = withDefaults(defineProps<Props>(), {
 
 const variantClasses: Record<NonNullable<Props['variant']>, string> = {
   primary: 'bg-primary-500 hover:bg-primary-600 text-white shadow-lg shadow-primary-500/10 hover:shadow-primary-500/20',
-  secondary: 'bg-surface-700 hover:bg-surface-600 text-[#F0F0F8]',
-  ghost: 'bg-transparent hover:bg-surface-800 text-[#A0A3BD]',
-  outline: 'border border-surface-500 hover:border-primary-500 text-[#A0A3BD] hover:text-primary-300',
+  secondary: 'bg-surface-700 hover:bg-surface-600 text-text-light',
+  ghost: 'bg-transparent hover:bg-surface-800 text-text-secondary',
+  outline: 'border border-surface-500 hover:border-primary-500 text-text-secondary hover:text-primary-300',
 }
 
 const sizeClasses: Record<NonNullable<Props['size']>, string> = {

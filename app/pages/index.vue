@@ -1,12 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n()
 
-useSeoMeta({
-  title: 'ML Architect — Portfolio',
-  description: t('hero.subtitle'),
-  ogTitle: 'ML Architect — Portfolio',
-  ogDescription: t('hero.subtitle'),
-})
+useSeo('ML Architect — Portfolio', t('hero.subtitle'))
 </script>
 
 <template>

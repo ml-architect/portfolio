@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
+const { formatDate } = useFormatDate()
 
 const slug = computed(() => route.params.slug as string)
 
@@ -32,19 +33,13 @@ const nextProject = computed(() => surround.value?.[1] || null)
 
 const formattedDate = computed(() => {
   if (!project.value?.date) return ''
-  return new Intl.DateTimeFormat(locale.value === 'ru' ? 'ru-RU' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-  }).format(new Date(project.value.date))
+  return formatDate(project.value.date, 'full')
 })
 
-useSeoMeta({
-  title: () => project.value ? `${project.value.title} — ML Architect` : 'ML Architect',
-  description: () => project.value?.description || '',
-  ogTitle: () => project.value ? `${project.value.title} — ML Architect` : 'ML Architect',
-  ogDescription: () => project.value?.description || '',
-})
+useSeo(
+  project.value ? `${project.value.title} — ML Architect` : 'ML Architect',
+  project.value?.description || '',
+)
 
 const pageRef = ref<HTMLElement | null>(null)
 
@@ -137,16 +132,11 @@ onMounted(() => {
 <template>
   <div ref="pageRef" class="max-w-4xl mx-auto py-24 px-6">
     <!-- Back link -->
-    <NuxtLink
+    <UiBackLink
       :to="localePath('/projects')"
-      class="
-        project-back-link inline-flex items-center gap-2 text-sm text-[#545454]
-        hover:text-primary-400 transition-colors mb-8
-      "
-    >
-      <Icon name="ph:arrow-left" size="16" />
-      {{ t('project.back') }}
-    </NuxtLink>
+      :label="t('project.back')"
+      class="project-back-link mb-8"
+    />
 
     <template v-if="project">
       <!-- Hero area -->
@@ -162,12 +152,12 @@ onMounted(() => {
         </h1>
 
         <!-- Description -->
-        <p class="text-lg text-[#545454] mb-6">
+        <p class="text-lg text-text-muted mb-6">
           {{ project.description }}
         </p>
 
         <!-- Meta info -->
-        <div class="flex flex-wrap gap-6 text-sm text-[#545454]">
+        <div class="flex flex-wrap gap-6 text-sm text-text-muted">
           <div v-if="project.client" class="flex items-center gap-2">
             <Icon name="ph:buildings" size="16" />
             <span>
@@ -200,7 +190,7 @@ onMounted(() => {
       <!-- Highlights -->
       <section
         v-if="project.highlights?.length"
-        class="project-highlights mb-12 bg-surface-800 rounded-card border border-[#1e1e1e] p-6"
+        class="project-highlights mb-12 bg-surface-800 rounded-card border border-surface-card p-6"
       >
         <h2 class="text-lg font-semibold text-white font-display mb-4">
           {{ t('project.highlights') }}
@@ -209,7 +199,7 @@ onMounted(() => {
           <li
             v-for="(highlight, index) in project.highlights"
             :key="index"
-            class="flex items-start gap-3 text-[#545454]"
+            class="flex items-start gap-3 text-text-muted"
           >
             <Icon
               name="ph:check-circle"
@@ -252,16 +242,16 @@ onMounted(() => {
       </div>
 
       <!-- Prev/Next navigation -->
-      <nav class="project-nav flex items-stretch gap-4 pt-8 border-t border-[#1e1e1e]">
+      <nav class="project-nav flex items-stretch gap-4 pt-8 border-t border-surface-card">
         <NuxtLink
           v-if="prevProject"
           :to="prevProject._path"
           class="
-            flex-1 group bg-surface-800 rounded-card border border-[#1e1e1e]
+            flex-1 group bg-surface-800 rounded-card border border-surface-card
             p-4 hover:border-primary-500/30 transition-all duration-300
           "
         >
-          <span class="text-xs text-[#545454] mb-1 block">{{ t('project.prev') }}</span>
+          <span class="text-xs text-text-muted mb-1 block">{{ t('project.prev') }}</span>
           <span class="text-sm text-white group-hover:text-primary-300 transition-colors">
             {{ prevProject.title }}
           </span>
@@ -272,11 +262,11 @@ onMounted(() => {
           v-if="nextProject"
           :to="nextProject._path"
           class="
-            flex-1 group bg-surface-800 rounded-card border border-[#1e1e1e]
+            flex-1 group bg-surface-800 rounded-card border border-surface-card
             p-4 text-right hover:border-primary-500/30 transition-all duration-300
           "
         >
-          <span class="text-xs text-[#545454] mb-1 block">{{ t('project.next') }}</span>
+          <span class="text-xs text-text-muted mb-1 block">{{ t('project.next') }}</span>
           <span class="text-sm text-white group-hover:text-primary-300 transition-colors">
             {{ nextProject.title }}
           </span>
@@ -286,9 +276,10 @@ onMounted(() => {
     </template>
 
     <!-- Not found -->
-    <div v-else class="text-center py-16">
-      <Icon name="ph:warning" size="48" class="text-[#545454] mb-4" />
-      <p class="text-[#545454]">{{ t('common.not_found') }}</p>
-    </div>
+    <UiEmptyState
+      v-else
+      icon="ph:warning"
+      :message="t('common.not_found')"
+    />
   </div>
 </template>

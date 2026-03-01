@@ -12,8 +12,8 @@ const switchLocalePath = useSwitchLocalePath()
       :class="[
         'px-2.5 py-1 text-xs font-semibold rounded-full transition-all duration-200 uppercase tracking-wide',
         locale === 'ru'
-          ? 'bg-surface-700 text-[#F0F0F8] shadow-sm'
-          : 'text-[#6B6F8D] hover:text-[#A0A3BD]',
+          ? 'bg-surface-700 text-text-light shadow-sm'
+          : 'text-text-dimmed hover:text-text-secondary',
       ]"
     >
       RU
@@ -23,8 +23,8 @@ const switchLocalePath = useSwitchLocalePath()
       :class="[
         'px-2.5 py-1 text-xs font-semibold rounded-full transition-all duration-200 uppercase tracking-wide',
         locale === 'en'
-          ? 'bg-surface-700 text-[#F0F0F8] shadow-sm'
-          : 'text-[#6B6F8D] hover:text-[#A0A3BD]',
+          ? 'bg-surface-700 text-text-light shadow-sm'
+          : 'text-text-dimmed hover:text-text-secondary',
       ]"
     >
       EN

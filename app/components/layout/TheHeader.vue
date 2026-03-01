@@ -1,7 +1,7 @@
 <script setup lang="ts">
-const { t, locale } = useI18n()
+const { locale } = useI18n()
 const localePath = useLocalePath()
-const route = useRoute()
+const { navLinks, isActive } = useNavigation()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
@@ -13,21 +13,6 @@ const { data: projectCount } = await useAsyncData(
     .count(),
   { watch: [locale] }
 )
-
-const navLinks = computed(() => [
-  { label: t('nav.home'), to: localePath('/'), key: 'home' },
-  { label: t('nav.projects'), to: localePath('/projects'), key: 'projects' },
-  { label: t('nav.blog'), to: localePath('/blog'), key: 'blog' },
-  { label: t('nav.about'), to: localePath('/about'), key: 'about' },
-])
-
-function isActive(to: string | object): boolean {
-  const path = typeof to === 'string' ? to : (to as { path: string }).path ?? ''
-  if (path === localePath('/')) {
-    return route.path === path
-  }
-  return route.path === path || route.path.startsWith(path + '/')
-}
 
 function onScroll(): void {
   isScrolled.value = window.scrollY > 20
@@ -71,7 +56,7 @@ watch(isMobileMenuOpen, (open) => {
         </NuxtLink>
 
         <!-- Desktop Navigation (pill container) -->
-        <nav class="hidden md:flex items-center bg-[#141414] rounded-full px-1.5 py-1">
+        <nav class="hidden md:flex items-center bg-surface-800 rounded-full px-1.5 py-1">
           <NuxtLink
             v-for="link in navLinks"
             :key="link.key"
@@ -80,7 +65,7 @@ watch(isMobileMenuOpen, (open) => {
               'relative flex items-center gap-1.5 px-4 py-1.5 text-sm font-medium rounded-full transition-colors duration-200',
               isActive(link.to)
                 ? 'text-white'
-                : 'text-[#545454] hover:text-white/70',
+                : 'text-text-muted hover:text-white/70',
             ]"
           >
             {{ link.label }}
@@ -100,7 +85,7 @@ watch(isMobileMenuOpen, (open) => {
           <!-- Mobile hamburger button -->
           <button
             type="button"
-            class="flex md:hidden items-center justify-center w-10 h-10 rounded-full text-[#545454] hover:text-white hover:bg-[#141414] transition-colors duration-200"
+            class="flex md:hidden items-center justify-center w-10 h-10 rounded-full text-text-muted hover:text-white hover:bg-surface-800 transition-colors duration-200"
             :aria-label="isMobileMenuOpen ? 'Close menu' : 'Open menu'"
             @click="isMobileMenuOpen = !isMobileMenuOpen"
           >

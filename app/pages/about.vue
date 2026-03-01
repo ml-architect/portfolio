@@ -16,7 +16,7 @@ const metrics: Metric[] = [
   { value: 16, suffix: '+', labelKey: 'about.metrics_projects' },
   { value: 14, suffix: '', labelKey: 'about.metrics_commercial' },
   { value: 5, suffix: '+', labelKey: 'about.metrics_experience' },
-  { value: 25, suffix: '+', labelKey: 'about.metrics_technologies' },
+  { value: 35, suffix: '+', labelKey: 'about.metrics_technologies' },
 ]
 
 interface ExpertiseCard {
@@ -88,20 +88,29 @@ const skillGroups: SkillGroup[] = [
       { name: 'Python', icon: 'simple-icons:python' },
       { name: 'FastAPI', icon: 'simple-icons:fastapi' },
       { name: 'asyncio', icon: 'ph:lightning' },
+      { name: 'Pydantic', icon: 'ph:shield-check' },
+      { name: 'SQLAlchemy', icon: 'ph:database' },
+      { name: 'aiogram 3', icon: 'ph:telegram-logo' },
       { name: 'WebSocket', icon: 'ph:plugs-connected' },
+      { name: 'gRPC', icon: 'ph:arrows-left-right' },
     ],
   },
   {
     title: 'ML/AI',
     skills: [
       { name: 'PyTorch', icon: 'simple-icons:pytorch' },
-      { name: 'Transformers', icon: 'noto:hugging-face' },
+      { name: 'TensorFlow', icon: 'simple-icons:tensorflow' },
+      { name: 'Transformers', icon: 'simple-icons:huggingface' },
+      { name: 'scikit-learn', icon: 'simple-icons:scikitlearn' },
       { name: 'LangChain', icon: 'ph:chain' },
+      { name: 'OpenCV', icon: 'simple-icons:opencv' },
+      { name: 'YOLOv8', icon: 'ph:bounding-box' },
       { name: 'Ollama', icon: 'ph:robot' },
       { name: 'vLLM', icon: 'ph:lightning' },
       { name: 'NVIDIA Triton', icon: 'ph:gpu' },
-      { name: 'ONNX', icon: 'ph:graph' },
       { name: 'CatBoost', icon: 'ph:chart-line-up' },
+      { name: 'RAG', icon: 'ph:files' },
+      { name: 'QLoRA', icon: 'ph:faders' },
     ],
   },
   {
@@ -113,6 +122,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'pgvector', icon: 'ph:vector-three' },
       { name: 'FAISS', icon: 'ph:magnifying-glass' },
       { name: 'Milvus', icon: 'ph:database' },
+      { name: 'DuckDB', icon: 'simple-icons:duckdb' },
     ],
   },
   {
@@ -120,8 +130,13 @@ const skillGroups: SkillGroup[] = [
     skills: [
       { name: 'Docker', icon: 'simple-icons:docker' },
       { name: 'GitLab CI/CD', icon: 'simple-icons:gitlab' },
+      { name: 'GitHub Actions', icon: 'simple-icons:githubactions' },
       { name: 'Traefik', icon: 'ph:traffic-sign' },
+      { name: 'Nginx', icon: 'simple-icons:nginx' },
       { name: 'Grafana', icon: 'simple-icons:grafana' },
+      { name: 'Prometheus', icon: 'simple-icons:prometheus' },
+      { name: 'VMware', icon: 'simple-icons:vmware' },
+      { name: 'ClearML', icon: 'ph:flask' },
     ],
   },
   {
@@ -149,12 +164,7 @@ const contacts: ContactLink[] = [
 
 // --- SEO ---
 
-useSeoMeta({
-  title: `${t('about.title')} — ML Architect`,
-  description: t('about.intro'),
-  ogTitle: `${t('about.title')} — ML Architect`,
-  ogDescription: t('about.intro'),
-})
+useSeo(`${t('about.title')} — ML Architect`, t('about.intro'))
 
 // --- Animations ---
 
@@ -188,8 +198,8 @@ onMounted(() => {
       const obj = { val: 0 }
       gsap.to(obj, {
         val: metrics[index].value,
-        duration: 2.5,
-        delay: 0.4 + index * 0.15,
+        duration: 4,
+        delay: 0.6 + index * 0.3,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
@@ -213,7 +223,7 @@ onMounted(() => {
       filter: 'blur(0px)',
       duration: 0.7,
       stagger: 0.1,
-      delay: 0.3,
+      delay: 0.5,
       ease: 'power2.out',
     })
 
@@ -231,7 +241,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.expertise-grid',
-        start: 'top 90%',
+        start: 'top 95%',
         toggleActions: 'play none none none',
       },
     })
@@ -250,7 +260,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.diff-grid',
-        start: 'top 90%',
+        start: 'top 95%',
         toggleActions: 'play none none none',
       },
     })
@@ -269,7 +279,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.skills-grid',
-        start: 'top 90%',
+        start: 'top 95%',
         toggleActions: 'play none none none',
       },
     })
@@ -288,10 +298,10 @@ onMounted(() => {
         tag="h1"
         class="text-display-md text-white font-display font-bold mb-3"
       />
-      <p class="text-lg text-primary-400 mb-6">
+      <p class="text-lg text-green-400 mb-6">
         {{ t('about.subtitle') }}
       </p>
-      <p class="text-lg text-[#A0A3BD] leading-relaxed max-w-3xl">
+      <p class="text-lg text-text-secondary leading-relaxed max-w-3xl">
         {{ t('about.intro') }}
       </p>
     </header>
@@ -299,17 +309,18 @@ onMounted(() => {
     <!-- 2. Metrics -->
     <section class="mb-20">
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div
+        <UiCard
           v-for="(metric, index) in metrics"
           :key="metric.labelKey"
-          class="metric-card bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-5 text-center hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
+          variant="glass"
+          class="metric-card p-5 text-center"
         >
           <div class="text-display-sm text-white font-bold">
             <span :ref="(el) => setNumberRef(el, index)">0</span>
-            <span v-if="metric.suffix" class="text-primary-400">{{ metric.suffix }}</span>
+            <span v-if="metric.suffix" class="text-green-400">{{ metric.suffix }}</span>
           </div>
-          <p class="text-sm text-[#6B6F8D] mt-1">{{ t(metric.labelKey) }}</p>
-        </div>
+          <p class="text-sm text-text-dimmed mt-1">{{ t(metric.labelKey) }}</p>
+        </UiCard>
       </div>
     </section>
 
@@ -320,13 +331,13 @@ onMounted(() => {
           {{ t('about.story_title') }}
         </h2>
         <div class="space-y-5 max-w-3xl">
-          <p class="text-lg text-[#A0A3BD] leading-relaxed">
+          <p class="text-lg text-text-secondary leading-relaxed">
             {{ t('about.story_1') }}
           </p>
-          <p class="text-lg text-[#A0A3BD] leading-relaxed">
+          <p class="text-lg text-text-secondary leading-relaxed">
             {{ t('about.story_2') }}
           </p>
-          <p class="text-lg text-[#A0A3BD] leading-relaxed">
+          <p class="text-lg text-text-secondary leading-relaxed">
             {{ t('about.story_3') }}
           </p>
         </div>
@@ -340,10 +351,11 @@ onMounted(() => {
           {{ t('about.expertise_title') }}
         </h2>
         <div class="expertise-grid grid grid-cols-1 md:grid-cols-2 gap-5">
-          <div
+          <UiCard
             v-for="card in expertiseCards"
             :key="card.titleKey"
-            class="expertise-card bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-6 hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
+            variant="glass"
+            class="expertise-card p-6"
           >
             <div class="w-10 h-10 rounded-full flex items-center justify-center mb-4" :class="card.color.split(' ')[1]">
               <Icon :name="card.icon" size="24" :class="card.color.split(' ')[0]" />
@@ -351,13 +363,13 @@ onMounted(() => {
             <h3 class="text-lg text-white font-semibold mb-2">
               {{ t(card.titleKey) }}
             </h3>
-            <p class="text-sm text-[#A0A3BD] leading-relaxed mb-3">
+            <p class="text-sm text-text-secondary leading-relaxed mb-3">
               {{ t(card.descKey) }}
             </p>
-            <p class="text-xs text-[#6B6F8D]">
+            <p class="text-xs text-text-dimmed">
               {{ t(card.exampleKey) }}
             </p>
-          </div>
+          </UiCard>
         </div>
       </section>
     </AnimationScrollReveal>
@@ -369,19 +381,20 @@ onMounted(() => {
           {{ t('about.diff_title') }}
         </h2>
         <div class="diff-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-          <div
+          <UiCard
             v-for="diff in differentiators"
             :key="diff.titleKey"
-            class="diff-card bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-5 hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
+            variant="glass"
+            class="diff-card p-5"
           >
-            <Icon :name="diff.icon" size="28" class="text-primary-400 mb-3" />
+            <Icon :name="diff.icon" size="28" class="text-green-400 mb-3" />
             <h3 class="text-sm text-white font-semibold mb-1">
               {{ t(diff.titleKey) }}
             </h3>
-            <p class="text-xs text-[#6B6F8D] leading-relaxed">
+            <p class="text-xs text-text-dimmed leading-relaxed">
               {{ t(diff.descKey) }}
             </p>
-          </div>
+          </UiCard>
         </div>
       </section>
     </AnimationScrollReveal>
@@ -393,10 +406,11 @@ onMounted(() => {
           {{ t('about.skills_title') }}
         </h2>
         <div class="skills-grid space-y-4">
-          <div
+          <UiCard
             v-for="group in skillGroups"
             :key="group.title"
-            class="skill-group bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-5 hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300"
+            variant="glass"
+            class="skill-group p-5"
           >
             <h3 class="text-sm font-semibold text-white uppercase tracking-wider mb-3">
               {{ group.title }}
@@ -409,7 +423,7 @@ onMounted(() => {
                 :icon="skill.icon"
               />
             </div>
-          </div>
+          </UiCard>
         </div>
       </section>
     </AnimationScrollReveal>
@@ -420,7 +434,7 @@ onMounted(() => {
         <h2 class="text-display-md text-white font-display font-semibold mb-2">
           {{ t('about.contact_title') }}
         </h2>
-        <p class="text-sm text-[#6B6F8D] mb-8">
+        <p class="text-sm text-text-dimmed mb-8">
           {{ t('about.contact_subtitle') }}
         </p>
         <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -432,10 +446,10 @@ onMounted(() => {
             rel="noopener noreferrer"
             class="block"
           >
-            <div class="bg-white/[0.03] backdrop-blur-xl border border-white/[0.08] rounded-card p-6 flex flex-col items-center gap-3 text-center hover:border-white/[0.15] hover:bg-white/[0.05] transition-all duration-300">
-              <Icon :name="contact.icon" size="32" class="text-primary-400" />
+            <UiCard variant="glass" class="p-6 flex flex-col items-center gap-3 text-center">
+              <Icon :name="contact.icon" size="32" class="text-green-400" />
               <span class="text-white font-medium">{{ contact.label }}</span>
-            </div>
+            </UiCard>
           </a>
         </div>
       </section>

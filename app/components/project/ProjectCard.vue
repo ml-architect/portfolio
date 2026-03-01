@@ -6,14 +6,11 @@ interface Props {
 }
 
 const props = defineProps<Props>()
-const { locale } = useI18n()
+const { formatDate } = useFormatDate()
 
 const formattedDate = computed(() => {
   if (!props.project.date) return ''
-  return new Intl.DateTimeFormat(locale.value === 'ru' ? 'ru-RU' : 'en-US', {
-    year: 'numeric',
-    month: 'long',
-  }).format(new Date(props.project.date))
+  return formatDate(props.project.date, 'month-year')
 })
 
 const visibleTags = computed(() => {
@@ -40,7 +37,7 @@ const hasMoreTags = computed(() => {
     </UiBadge>
 
     <!-- Client -->
-    <div v-if="project.client" class="flex items-center gap-1.5 mt-3 text-xs text-[#707070]">
+    <div v-if="project.client" class="flex items-center gap-1.5 mt-3 text-xs text-text-muted">
       <Icon name="ph:buildings" class="size-3.5 shrink-0" />
       <component
         :is="project.clientUrl ? 'a' : 'span'"
@@ -58,28 +55,28 @@ const hasMoreTags = computed(() => {
     </h3>
 
     <!-- Description -->
-    <p class="text-sm text-[#545454] mt-2 line-clamp-2 flex-1">
+    <p class="text-sm text-text-muted mt-2 line-clamp-2 flex-1">
       {{ project.description }}
     </p>
 
     <!-- Bottom: tags + date -->
-    <div class="flex items-center justify-between mt-4 pt-4 border-t border-[#1e1e1e]">
+    <div class="flex items-center justify-between mt-4 pt-4 border-t border-surface-card">
       <div class="flex gap-1.5 overflow-hidden min-w-0">
         <span
           v-for="tag in visibleTags"
           :key="tag"
-          class="text-xs text-[#545454] bg-[#1e1e1e] px-2 py-0.5 rounded shrink-0"
+          class="text-xs text-text-muted bg-surface-card px-2 py-0.5 rounded shrink-0"
         >
           {{ tag }}
         </span>
         <span
           v-if="hasMoreTags"
-          class="text-xs text-[#545454] shrink-0"
+          class="text-xs text-text-muted shrink-0"
         >
           +{{ project.tags.length - 4 }}
         </span>
       </div>
-      <span class="text-xs text-[#545454] whitespace-nowrap ml-3 shrink-0">
+      <span class="text-xs text-text-muted whitespace-nowrap ml-3 shrink-0">
         {{ formattedDate }}
       </span>
     </div>

@@ -12,7 +12,7 @@ defineProps<Props>()
     class="
       inline-flex items-center gap-1.5
       bg-surface-800 hover:bg-surface-700
-      text-[#A0A3BD] hover:text-[#F0F0F8]
+      text-text-secondary hover:text-text-light
       px-3 py-1.5 rounded-lg text-sm
       transition-colors duration-200
       select-none cursor-default
