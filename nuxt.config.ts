@@ -4,12 +4,12 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
 
   app: {
-    baseURL: '/',
+    baseURL: '/portfolio/',
     head: {
       charset: 'utf-8',
       viewport: 'width=device-width, initial-scale=1',
       link: [
-        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' },
+        { rel: 'icon', type: 'image/svg+xml', href: '/portfolio/favicon.svg' },
       ],
       meta: [
         { name: 'description', content: 'Portfolio of an ML Engineer & Software Architect' },

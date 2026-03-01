@@ -100,7 +100,7 @@ onUnmounted(() => {
             <!-- Download buttons -->
             <div class="flex flex-col gap-2">
               <a
-                href="/resume-ru.pdf"
+                href="/portfolio/resume-ru.pdf"
                 download
                 class="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-800 border border-white/[0.06] hover:border-primary/30 hover:bg-primary/10 transition-all group"
                 @click="onDownload"
@@ -110,7 +110,7 @@ onUnmounted(() => {
                 <span class="ml-auto text-[10px] font-semibold text-white/30 uppercase tracking-wider">PDF</span>
               </a>
               <a
-                href="/resume-en.pdf"
+                href="/portfolio/resume-en.pdf"
                 download
                 class="flex items-center gap-3 px-4 py-3 rounded-xl bg-surface-800 border border-white/[0.06] hover:border-primary/30 hover:bg-primary/10 transition-all group"
                 @click="onDownload"
