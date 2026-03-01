@@ -1,0 +1,239 @@
+\documentclass[]{deedy-resume-reversed}
+
+% Language
+\setdefaultlanguage{english}
+
+% Fonts — Lato/Raleway (bundled, Latin-only)
+\setmainfont[
+  Color=primary,
+  Path=fonts/lato/,
+  BoldItalicFont=Lato-BolIta,
+  BoldFont=Lato-Bol,
+  ItalicFont=Lato-RegIta
+]{Lato-Reg}
+\setsansfont[
+  Scale=MatchLowercase,
+  Path=fonts/raleway/
+]{Raleway-ExtraLight}
+\newfontfamily\namefont[Path=fonts/lato/]{Lato-Lig}
+\newfontfamily\headingmedium[Path=fonts/raleway/]{Raleway-Medium}
+
+% Page numbering
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\fontsize{8pt}{10pt}\selectfont\color{light} Andrey Guslikov \,·\, Resume \,·\, Page \thepage\ of \pageref{LastPage}}
+
+\begin{document}
+
+%=============================================================
+%     HEADER
+%=============================================================
+
+\namesection{{\namefont ANDREY GUSLIKOV}}{{\headingmedium ML Engineer / AI Systems Architect}}{%
+\faEnvelope\ \href{mailto:mattias666@mail.ru}{mattias666@mail.ru} \quad
+\faTelegram\ \href{https://t.me/andrew_the_one}{@andrew\_the\_one} \quad
+\faGithub\ \href{https://github.com/versus666jzx}{versus666jzx}
+}
+
+%=============================================================
+%     SUMMARY (full width, no underline)
+%=============================================================
+
+\summarysection{SUMMARY}
+
+{\fontsize{9.5pt}{12pt}\selectfont ML Engineer with 5+ years at the intersection of production engineering and AI. I specialize in designing and deploying AI systems in production: from LLM fine-tuning and inference optimization to building high-load microservice platforms. 18+ projects (16 commercial). Core stack: Python, PyTorch, NVIDIA Triton, FastAPI, Docker, CI/CD. Strong engineering culture: clean architecture, type safety, testing, monitoring.}
+
+\vspace{4pt}
+\noindent\makebox[\linewidth]{\color{accent}\rule{\linewidth}{0.6pt}}
+\vspace{2pt}
+
+%=============================================================
+%     TWO-COLUMN LAYOUT (paracol — supports page breaks)
+%=============================================================
+
+\begin{paracol}{2}
+
+%=============================================================
+%     LEFT COLUMN — EXPERIENCE
+%=============================================================
+
+\section{PROFESSIONAL EXPERIENCE}
+
+%---------- Palatine Cloud ----------
+\runsubsection{Palatine Cloud}
+\descript{Cloud ASR Platform \hfill Sole Developer}\\
+\location{2024 - Present \enspace·\enspace Palatine Vision \enspace·\enspace \href{https://speech.palatine.ru/}{speech.palatine.ru}}
+\begin{tightemize}
+\item Designed and deployed a cloud speech recognition platform comprising 10 microservices on dedicated GPU servers
+\item NVIDIA Triton Inference Server (gRPC, sequence batching, stateful inference) + Ray Serve with auto-scaling replicas
+\item Real-time streaming transcription via WebSocket $\rightarrow$ Triton gRPC
+\item Deployed local LLMs for summarization and analytics (OpenAI-compatible API)
+\item Payment gateway with Clean Architecture: multi-merchant routing, fiscal receipts per Russian tax law (54-FZ)
+\item \textbf{Result:} WER 7.1\% (92.9\% accuracy), 10M audio min/day, 99.982\% uptime, 100+ languages
+\end{tightemize}
+\sectionsep
+
+%---------- Security Event Manager ----------
+\runsubsection{Security Event Manager}
+\descript{SOC Platform \hfill Full-stack Developer}\\
+\location{2024 - Present \enspace·\enspace SOC (NDA) \enspace·\enspace 8 instances across Russia}
+\begin{tightemize}
+\item Built SOC automation platform: full detection-to-escalation cycle for security incidents
+\item Two-level CatBoost: model 1 detects attack, model 2 classifies type (DNS attacks, trojans, miners)
+\item Custom Sigma Rules Engine from scratch: recursive descent parser with full Sigma syntax (AND/OR/NOT, wildcard, modifiers)
+\item Local LLM (Qwen3, DeepSeek-R1) as analyst AI assistant within the security perimeter
+\item Vue~3 SPA + FastAPI REST API (17 routers) + autonomous background processor
+\item \textbf{Result:} 3x incident detection increase, 70\% processing time reduction, thousands of SIEM events/day
+\end{tightemize}
+\sectionsep
+
+%---------- Contract Risk Analyzer ----------
+\runsubsection{Contract Risk Analyzer}
+\descript{LLM for Legal Analysis \hfill ML / Backend Developer}\\
+\location{2025 \enspace·\enspace TD Zerno Zavolzhya \enspace·\enspace Palatine $\rightarrow$ TDZZ}
+\begin{tightemize}
+\item Built AI system for risk analysis in international maritime grain shipping contracts
+\item QLoRA fine-tuning (4-bit NF4, rank 32-256): 59 contracts $\times$ 111 phrases = $\sim$6,000 examples
+\item LLM-as-a-Judge pipeline: primary model generates chain-of-thought $\rightarrow$ independent verifier
+\item Benchmarked 6 approaches: commercial LLMs, open-source, RAG (SaaS + custom graph RAG)
+\item \textbf{Result:} 12-15x speedup (2-3 hours to 10-15 min), 3-5 to 20-30 contracts/day
+\end{tightemize}
+\sectionsep
+
+%---------- MFTI Explainer ----------
+\runsubsection{MFTI Explainer}
+\descript{Educational RAG System \hfill Full-stack Developer}\\
+\location{2026 \enspace·\enspace MIPT \enspace·\enspace Palatine $\rightarrow$ MIPT}
+\begin{tightemize}
+\item RAG system explaining educational content to school students (grades 1-11)
+\item Pedagogical AI: age-adapted answers, no solving tasks for students, no hallucinations
+\item Pluggable LLM provider: swap service without changing HTTP API or client code
+\item Python SDK: typed library (questions, document upload, monitoring)
+\item \textbf{Result:} PDF/DOCX/TXT/CSV/JSON/ePUB, hash-based deduplication, source citations
+\end{tightemize}
+\sectionsep
+
+%---------- Historical Docs OCR ----------
+\runsubsection{Historical Docs OCR}
+\descript{ML Pipeline \hfill ML Engineer}\\
+\location{2024 \enspace·\enspace MIPT \enspace·\enspace \href{https://github.com/versus666jzx/Historical-docs-OCR}{GitHub}}
+\begin{tightemize}
+\item ML pipeline for text recognition on historical Russian documents (18th-19th century)
+\item 3-stage: YOLOv8 (detection) $\rightarrow$ OpenCV (preprocessing) $\rightarrow$ Seq2Seq (recognition)
+\item Handles pre-revolutionary orthography and handwritten text
+\item MLOps: ClearML (experiment tracking), Roboflow (2,000+ images)
+\item \textbf{Result:} mAP50 93\%, 2,000+ scans from 29+ regions, 10x speedup vs manual transcription
+\end{tightemize}
+\sectionsep
+
+%---------- Vehicle Detection ----------
+\runsubsection{Vehicle Detection System}
+\descript{Real-time CV Platform \hfill MLOps / Backend}\\
+\location{2024 \enspace·\enspace NDA \enspace·\enspace 6$\times$ NVIDIA RTX A6000}
+\begin{tightemize}
+\item High-load CV platform: vehicle detection and license plate recognition from 6,000 cameras
+\item NVIDIA Triton + TensorRT: 6 models across 6 GPUs, dynamic batching, ensemble pipeline
+\item Ensemble plate recognition: 3-stage pipeline as a single Triton request
+\item \textbf{Result:} <50ms per-frame latency, 6,000 cameras real-time, mypy strict, 100\% typed
+\end{tightemize}
+\sectionsep
+
+%---------- Mediaclass API ----------
+\runsubsection{Mediaclass API}
+\descript{On-premise ASR \hfill Backend / ML Engineer}\\
+\location{2026 \enspace·\enspace DIGIS \enspace·\enspace Palatine $\rightarrow$ DIGIS}
+\begin{tightemize}
+\item Backend for ``MEDIACLASS AI'' desktop app: audio/video transcription with diarization
+\item Hybrid ML providers: local GPU or cloud, interchangeable via contract interfaces
+\item Cross-platform hardware licensing (CPU/RAM/GPU fingerprint)
+\item \textbf{Result:} autonomous on-premise deployment, PyArmor, GPU auto-detection with CPU fallback
+\end{tightemize}
+\sectionsep
+
+%---------- Palatine Astro ----------
+\runsubsection{Palatine Astro}
+\descript{AI Agent in Telegram \hfill Backend / AI Engineer}\\
+\location{2025 \enspace·\enspace Palatine}
+\begin{tightemize}
+\item AI platform for personalized astrological consultations via Telegram
+\item LLM as AI agent: autonomously decides which tools to call (natal chart, synastry)
+\item Custom MCP server on top of Kerykeion: astronomical calculations + SVG diagrams
+\item \textbf{Result:} 80\% automation of consultations, 35\% conversion increase to paid subscription
+\end{tightemize}
+\sectionsep
+
+%---------- DGX Spark Benchmark ----------
+\runsubsection{DGX Spark LLM Benchmark}
+\descript{Inference Benchmark \hfill Researcher}\\
+\location{2026 \enspace·\enspace Palatine / Habr \enspace·\enspace \href{https://habr.com/ru/articles/994058/}{Habr Publication}}
+\begin{tightemize}
+\item One of the first public benchmarks of NVIDIA DGX Spark (Grace Blackwell, 128 GB unified memory)
+\item Full sweep: model $\times$ dataset $\times$ concurrency (1-100), 5 quantizations (BF16, FP8, AWQ, GPTQ)
+\item \textbf{Result:} discovered throughput plateau after 50 requests (LPDDR5X 273 GB/s bottleneck)
+\end{tightemize}
+
+%=============================================================
+%     RIGHT COLUMN
+%=============================================================
+
+\switchcolumn
+
+\section{EDUCATION}
+
+\runsubsection{Peter the Great\\RVSN Academy}
+\descript{Engineer}\\
+\location{2009 - 2014}\\[2pt]
+{\fontsize{9pt}{11pt}\selectfont Faculty of Automated Control Systems\\
+Specialization: ACS}
+\sectionsep
+
+%---------- Skills ----------
+
+\section{TECHNICAL SKILLS}
+
+{\fontsize{9pt}{11pt}\selectfont
+\textbf{Backend}\\
+Python, FastAPI, asyncio, Pydantic, SQLAlchemy, aiogram~3, WebSocket, gRPC
+\vspace{4pt}
+
+\textbf{ML / AI}\\
+PyTorch, TensorFlow, Transformers, scikit-learn, CatBoost, LangChain, OpenCV, YOLOv8, Ollama, vLLM, NVIDIA Triton, TensorRT, QLoRA, RAG, LLM Fine-tuning
+\vspace{4pt}
+
+\textbf{Data}\\
+PostgreSQL, Redis, Elasticsearch, pgvector, FAISS, Milvus, DuckDB
+\vspace{4pt}
+
+\textbf{Infra}\\
+Docker, GitLab CI/CD, GitHub Actions, Traefik, Nginx, Grafana, Prometheus, Loki, VMware, ClearML, Roboflow
+\vspace{4pt}
+
+\textbf{Frontend}\\
+Vue~3, TypeScript, Tailwind CSS, Nuxt, Streamlit
+}
+\sectionsep
+
+%---------- Publications ----------
+
+\section{PUBLICATIONS}
+
+{\fontsize{9pt}{11pt}\selectfont
+\href{https://habr.com/ru/articles/994058/}{\textbf{LLM Inference Benchmark on NVIDIA DGX Spark}} · Habr, 2026\\[2pt]
+One of the first public benchmarks of Grace Blackwell architecture (vLLM, 5 quantizations, 4 metrics)
+}
+\sectionsep
+
+%---------- Links ----------
+
+\section{LINKS}
+
+{\fontsize{9pt}{11pt}\selectfont
+\faGithub\ \href{https://github.com/versus666jzx}{github.com/versus666jzx}\\[3pt]
+\faTelegram\ \href{https://t.me/andrew_the_one}{t.me/andrew\_the\_one}\\[3pt]
+\faEnvelope\ \href{mailto:mattias666@mail.ru}{mattias666@mail.ru}
+}
+
+\end{paracol}
+
+\end{document}

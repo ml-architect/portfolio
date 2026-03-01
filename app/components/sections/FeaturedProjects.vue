@@ -40,7 +40,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: sectionRef.value,
-        start: 'top 80%',
+        start: 'top 95%',
       },
     })
 
@@ -57,7 +57,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.bento-grid',
-        start: 'top 80%',
+        start: 'top 95%',
       },
     })
   }, sectionRef.value)

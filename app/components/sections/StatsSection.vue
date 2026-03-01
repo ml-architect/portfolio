@@ -11,10 +11,10 @@ interface Stat {
 }
 
 const stats: Stat[] = [
-  { value: 16, suffix: '+', labelKey: 'stats.projects' },
-  { value: 8, suffix: '', labelKey: 'stats.commercial' },
-  { value: 5, suffix: '+', labelKey: 'stats.experience' },
-  { value: 78, suffix: '+', labelKey: 'stats.technologies' },
+  { value: 18, suffix: '+', labelKey: 'stats.projects' },
+  { value: 16, suffix: '', labelKey: 'stats.commercial' },
+  { value: 6, suffix: '', labelKey: 'stats.localInference' },
+  { value: 35, suffix: '+', labelKey: 'stats.deployed' },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -37,7 +37,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 85%',
+          start: 'top 98%',
         },
         onUpdate: () => {
           el.textContent = Math.floor(obj.val).toString()

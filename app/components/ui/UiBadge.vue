@@ -12,7 +12,7 @@ const props = withDefaults(defineProps<Props>(), {
 const variantClasses: Record<NonNullable<Props['variant']>, string> = {
   primary: 'bg-primary-500/10 text-primary-300',
   commercial: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/20',
-  research: 'bg-primary-500/10 text-primary-400 border border-primary-500/20',
+  research: 'bg-violet-500/10 text-violet-400 border border-violet-500/20',
 }
 
 const sizeClasses: Record<NonNullable<Props['size']>, string> = {

@@ -13,10 +13,10 @@ interface Metric {
 }
 
 const metrics: Metric[] = [
-  { value: 16, suffix: '+', labelKey: 'about.metrics_projects' },
-  { value: 14, suffix: '', labelKey: 'about.metrics_commercial' },
+  { value: 18, suffix: '+', labelKey: 'about.metrics_projects' },
+  { value: 16, suffix: '', labelKey: 'about.metrics_commercial' },
   { value: 5, suffix: '+', labelKey: 'about.metrics_experience' },
-  { value: 35, suffix: '+', labelKey: 'about.metrics_technologies' },
+  { value: 40, suffix: '+', labelKey: 'about.metrics_technologies' },
 ]
 
 interface ExpertiseCard {
@@ -108,6 +108,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'Ollama', icon: 'ph:robot' },
       { name: 'vLLM', icon: 'ph:lightning' },
       { name: 'NVIDIA Triton', icon: 'ph:gpu' },
+      { name: 'TensorRT', icon: 'ph:lightning' },
       { name: 'CatBoost', icon: 'ph:chart-line-up' },
       { name: 'RAG', icon: 'ph:files' },
       { name: 'QLoRA', icon: 'ph:faders' },
@@ -137,6 +138,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'Prometheus', icon: 'simple-icons:prometheus' },
       { name: 'VMware', icon: 'simple-icons:vmware' },
       { name: 'ClearML', icon: 'ph:flask' },
+      { name: 'Roboflow', icon: 'ph:camera' },
     ],
   },
   {
@@ -146,6 +148,7 @@ const skillGroups: SkillGroup[] = [
       { name: 'TypeScript', icon: 'simple-icons:typescript' },
       { name: 'Tailwind CSS', icon: 'simple-icons:tailwindcss' },
       { name: 'Nuxt', icon: 'simple-icons:nuxtdotjs' },
+      { name: 'Streamlit', icon: 'simple-icons:streamlit' },
     ],
   },
 ]

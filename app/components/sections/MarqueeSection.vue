@@ -13,7 +13,7 @@ onMounted(() => {
       duration: 1,
       scrollTrigger: {
         trigger: sectionRef.value,
-        start: 'top 90%',
+        start: 'top 98%',
       },
     })
   }, sectionRef.value)

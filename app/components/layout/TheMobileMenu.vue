@@ -8,8 +8,10 @@ const props = defineProps<{
 
 const emit = defineEmits<{
   'update:modelValue': [value: boolean]
+  'openResume': []
 }>()
 
+const { t } = useI18n()
 const { isActive } = useNavigation()
 
 function close(): void {
@@ -18,6 +20,11 @@ function close(): void {
 
 function onLinkClick(): void {
   close()
+}
+
+function onResumeClick(): void {
+  close()
+  emit('openResume')
 }
 </script>
 
@@ -65,8 +72,16 @@ function onLinkClick(): void {
           </NuxtLink>
         </nav>
 
-        <!-- Language switcher at bottom -->
-        <div class="flex justify-center pb-12">
+        <!-- Resume + Language switcher at bottom -->
+        <div class="flex flex-col items-center gap-4 pb-12">
+          <button
+            type="button"
+            class="flex items-center gap-2 px-5 py-2.5 text-base font-medium text-text-muted hover:text-white rounded-full bg-surface-800 border border-white/[0.06] hover:border-primary/30 transition-all"
+            @click="onResumeClick"
+          >
+            <Icon name="ph:download-simple" size="18" />
+            {{ t('nav.resume') }}
+          </button>
           <LayoutLanguageSwitcher />
         </div>
       </div>

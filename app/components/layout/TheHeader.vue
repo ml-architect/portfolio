@@ -1,10 +1,11 @@
 <script setup lang="ts">
-const { locale } = useI18n()
+const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const { navLinks, isActive } = useNavigation()
 
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
+const isResumeModalOpen = ref(false)
 
 const { data: projectCount } = await useAsyncData(
   'project-count',
@@ -78,8 +79,18 @@ watch(isMobileMenuOpen, (open) => {
           </NuxtLink>
         </nav>
 
-        <!-- Right section: Language Switcher + Mobile Hamburger -->
+        <!-- Right section: Resume + Language Switcher + Mobile Hamburger -->
         <div class="flex items-center gap-3 shrink-0">
+          <!-- Resume button (desktop) -->
+          <button
+            type="button"
+            class="hidden md:flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium text-text-muted hover:text-white rounded-full hover:bg-surface-800 transition-colors duration-200"
+            @click="isResumeModalOpen = true"
+          >
+            <Icon name="ph:download-simple" size="16" />
+            {{ t('nav.resume') }}
+          </button>
+
           <LayoutLanguageSwitcher class="hidden md:flex" />
 
           <!-- Mobile hamburger button -->
@@ -103,5 +114,9 @@ watch(isMobileMenuOpen, (open) => {
   <LayoutTheMobileMenu
     v-model="isMobileMenuOpen"
     :links="navLinks"
+    @open-resume="isResumeModalOpen = true"
   />
+
+  <!-- Resume Modal -->
+  <LayoutResumeModal v-model="isResumeModalOpen" />
 </template>

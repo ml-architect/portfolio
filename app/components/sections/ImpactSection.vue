@@ -13,12 +13,12 @@ interface ImpactCard {
 }
 
 const cards: ImpactCard[] = [
-  { icon: 'ph:cloud-arrow-up-bold', value: 10, suffix: '', titleKey: 'impact.cloud_title', descKey: 'impact.cloud_desc' },
-  { icon: 'ph:file-search-bold', value: 111, suffix: '', titleKey: 'impact.contracts_title', descKey: 'impact.contracts_desc' },
-  { icon: 'ph:brain-bold', value: 20, suffix: '+', titleKey: 'impact.models_title', descKey: 'impact.models_desc' },
-  { icon: 'ph:arrows-clockwise-bold', value: 7, suffix: '', titleKey: 'impact.finetune_title', descKey: 'impact.finetune_desc' },
-  { icon: 'ph:cube-bold', value: 35, suffix: '+', titleKey: 'impact.services_title', descKey: 'impact.services_desc' },
-  { icon: 'ph:shield-check-bold', value: 12, suffix: '+', titleKey: 'impact.security_title', descKey: 'impact.security_desc' },
+  { icon: 'ph:graphics-card-bold', value: 6, suffix: '', titleKey: 'impact.localInference_title', descKey: 'impact.localInference_desc' },
+  { icon: 'ph:waveform-bold', value: 10, suffix: '', titleKey: 'impact.audioScale_title', descKey: 'impact.audioScale_desc' },
+  { icon: 'ph:video-camera-bold', value: 6000, suffix: '', titleKey: 'impact.cameras_title', descKey: 'impact.cameras_desc' },
+  { icon: 'ph:brain-bold', value: 32, suffix: 'B', titleKey: 'impact.finetune_title', descKey: 'impact.finetune_desc' },
+  { icon: 'ph:map-pin-bold', value: 8, suffix: '', titleKey: 'impact.instances_title', descKey: 'impact.instances_desc' },
+  { icon: 'ph:lightning-bold', value: 50, suffix: '', titleKey: 'impact.latency_title', descKey: 'impact.latency_desc' },
 ]
 
 const sectionRef = ref<HTMLElement | null>(null)
@@ -42,7 +42,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: sectionRef.value,
-          start: 'top 90%',
+          start: 'top 98%',
           toggleActions: 'play none none none',
         },
       },
@@ -59,7 +59,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: '.impact-grid',
-          start: 'top 95%',
+          start: 'top 98%',
           toggleActions: 'play none none none',
         },
       },
@@ -75,7 +75,7 @@ onMounted(() => {
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 95%',
+          start: 'top 98%',
           toggleActions: 'play none none none',
         },
         onUpdate: () => {

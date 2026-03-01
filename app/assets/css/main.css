@@ -26,14 +26,14 @@ html {
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid #6C63FF;
+  outline: 2px solid #10b981;
   outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* Gradient text utility */
 .gradient-text {
-  background: linear-gradient(135deg, #8580ff 0%, #6C63FF 50%, #a3a1ff 100%);
+  background: linear-gradient(135deg, #34d399 0%, #10b981 50%, #6ee7b7 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

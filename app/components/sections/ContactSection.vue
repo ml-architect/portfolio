@@ -21,7 +21,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.cta-title',
-        start: 'top 90%',
+        start: 'top 98%',
         toggleActions: 'play none none none',
       },
     })
@@ -38,7 +38,7 @@ onMounted(() => {
       ease: 'power2.out',
       scrollTrigger: {
         trigger: '.cta-title',
-        start: 'top 90%',
+        start: 'top 98%',
         toggleActions: 'play none none none',
       },
     })

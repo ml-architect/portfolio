@@ -1,0 +1,236 @@
+\documentclass[]{deedy-resume-reversed}
+
+% Language
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+% Fonts — Montserrat (full Cyrillic support)
+\setmainfont{Montserrat-Regular}[
+  Color=1a1a1a,
+  BoldFont=Montserrat-Bold,
+  ItalicFont=Montserrat-Italic,
+  BoldItalicFont=Montserrat-BoldItalic
+]
+\setsansfont{Montserrat-Light}[BoldFont=Montserrat-Bold]
+\newfontfamily\cyrillicfont{Montserrat-Regular}
+\newfontfamily\cyrillicfontsf{Montserrat-Light}
+
+% Page numbering
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[C]{\fontsize{8pt}{10pt}\selectfont\color{light} Гусликов А.А. \,·\, Резюме \,·\, Стр. \thepage\ из \pageref{LastPage}}
+
+\begin{document}
+
+%=============================================================
+%     HEADER
+%=============================================================
+
+\namesection{АНДРЕЙ ГУСЛИКОВ}{ML-инженер / AI Systems Architect}{%
+\faEnvelope\ \href{mailto:mattias666@mail.ru}{mattias666@mail.ru} \quad
+\faTelegram\ \href{https://t.me/andrew_the_one}{@andrew\_the\_one} \quad
+\faGithub\ \href{https://github.com/versus666jzx}{versus666jzx}
+}
+
+%=============================================================
+%     SUMMARY (full width, no underline)
+%=============================================================
+
+\summarysection{О СЕБЕ}
+
+{\fontsize{9.5pt}{12pt}\selectfont ML-инженер с 5+ годами опыта на стыке продакшн-инженерии и AI. Специализация: проектирование и развёртывание AI-систем в production - от fine-tuning LLM и оптимизации inference до построения высоконагруженных микросервисных платформ. 18+ проектов (16 коммерческих). Стек: Python, PyTorch, NVIDIA Triton, FastAPI, Docker, CI/CD. Инженерная культура: чистая архитектура, типизация, тесты, мониторинг.}
+
+\vspace{4pt}
+\noindent\makebox[\linewidth]{\color{accent}\rule{\linewidth}{0.6pt}}
+\vspace{2pt}
+
+%=============================================================
+%     TWO-COLUMN LAYOUT (paracol — supports page breaks)
+%=============================================================
+
+\begin{paracol}{2}
+
+%=============================================================
+%     LEFT COLUMN — EXPERIENCE
+%=============================================================
+
+\section{ПРОФЕССИОНАЛЬНЫЙ ОПЫТ}
+
+%---------- Palatine Cloud ----------
+\runsubsection{Palatine Cloud}
+\descript{Облачная ASR-платформа \hfill Единственный разработчик}\\
+\location{2024 - н.в. \enspace·\enspace Palatine Vision \enspace·\enspace \href{https://speech.palatine.ru/}{speech.palatine.ru}}
+\begin{tightemize}
+\item Спроектировал и развернул облачную платформу распознавания речи из 10 микросервисов на выделенных GPU-серверах
+\item NVIDIA Triton Inference Server (gRPC, sequence batching, stateful inference) + Ray Serve с автоскейлингом реплик
+\item Стриминг-транскрипция в реальном времени через WebSocket $\rightarrow$ Triton gRPC
+\item Развернул локальные LLM для суммаризации и аналитики (OpenAI-совместимый API)
+\item Платёжный шлюз на Clean Architecture: мульти-мерчант маршрутизация, фискализация по 54-ФЗ
+\item \textbf{Результат:} WER 7.1\% (точность 92.9\%), 10M аудио-минут/день, uptime 99.982\%, 100+ языков
+\end{tightemize}
+\sectionsep
+
+%---------- Security Event Manager ----------
+\runsubsection{Security Event Manager}
+\descript{SOC-платформа \hfill Full-stack разработчик}\\
+\location{2024 - н.в. \enspace·\enspace SOC (NDA) \enspace·\enspace 8 инстансов по РФ}
+\begin{tightemize}
+\item Разработал платформу автоматизации SOC: полный цикл от обнаружения до эскалации инцидентов
+\item Двухуровневый CatBoost: модель 1 - детекция атаки, модель 2 - классификация типа (DNS-атаки, трояны, майнеры)
+\item Кастомный Sigma-движок с нуля: рекурсивный парсер с полным синтаксисом Sigma (AND/OR/NOT, wildcard, модификаторы)
+\item Локальный LLM (Qwen3, DeepSeek-R1) как AI-ассистент аналитика в контуре безопасности
+\item Vue~3 SPA + FastAPI REST API (17 роутеров) + автономный бэкграунд-процессор
+\item \textbf{Результат:} 3x рост обнаружения инцидентов, 70\% сокращение времени обработки, тысячи SIEM-событий/день
+\end{tightemize}
+\sectionsep
+
+%---------- Contract Risk Analyzer ----------
+\runsubsection{Анализатор рисков контрактов}
+\descript{LLM для юр. анализа \hfill ML / Backend-разработчик}\\
+\location{2025 \enspace·\enspace ТД «Зерно Заволжья» \enspace·\enspace Palatine $\rightarrow$ ТДЗЗ}
+\begin{tightemize}
+\item Разработал AI-систему анализа рисков в международных контрактах морских перевозок зерна
+\item QLoRA fine-tuning (4-bit NF4, rank 32-256): 59 контрактов $\times$ 111 фраз = $\sim$6000 примеров
+\item Pipeline LLM-as-a-Judge: первичная модель генерирует chain-of-thought $\rightarrow$ независимый верификатор
+\item Бенчмарк 6 подходов: коммерческие LLM, open-source, RAG (SaaS + custom graph RAG)
+\item \textbf{Результат:} ускорение 12-15x (с 2-3 ч до 10-15 мин), с 3-5 до 20-30 контрактов/день
+\end{tightemize}
+\sectionsep
+
+%---------- MFTI Explainer ----------
+\runsubsection{MFTI Explainer}
+\descript{RAG-система для образования \hfill Full-stack разработчик}\\
+\location{2026 \enspace·\enspace МФТИ \enspace·\enspace Palatine $\rightarrow$ МФТИ}
+\begin{tightemize}
+\item RAG-система объяснения учебного контента для школьников 1-11 классов
+\item Педагогический AI: адаптация языка по возрасту, без решения задач за ученика, без галлюцинаций
+\item Pluggable LLM provider: замена сервиса без изменения HTTP API или клиентского кода
+\item Python SDK: типизированная библиотека (вопросы, загрузка документов, мониторинг)
+\item \textbf{Результат:} PDF/DOCX/TXT/CSV/JSON/ePUB, дедупликация по хэшу, цитирование источников
+\end{tightemize}
+\sectionsep
+
+%---------- Historical Docs OCR ----------
+\runsubsection{OCR исторических документов}
+\descript{ML-pipeline \hfill ML-инженер}\\
+\location{2024 \enspace·\enspace МФТИ \enspace·\enspace \href{https://github.com/versus666jzx/Historical-docs-OCR}{GitHub}}
+\begin{tightemize}
+\item ML-pipeline распознавания текста на исторических документах XVIII-XIX вв.
+\item 3 этапа: YOLOv8 (детекция) $\rightarrow$ OpenCV (предобработка) $\rightarrow$ Seq2Seq (распознавание)
+\item Обработка дореволюционной орфографии (ять, фита, ер) и рукописного текста
+\item MLOps: ClearML (трекинг экспериментов), Roboflow (2000+ изображений)
+\item \textbf{Результат:} mAP50 93\%, 2000+ сканов из 29+ регионов, 10x ускорение vs ручная транскрипция
+\end{tightemize}
+\sectionsep
+
+%---------- Vehicle Detection ----------
+\runsubsection{Vehicle Detection System}
+\descript{CV-платформа \hfill MLOps / Backend}\\
+\location{2024 \enspace·\enspace NDA \enspace·\enspace 6$\times$ NVIDIA RTX A6000}
+\begin{tightemize}
+\item Высоконагруженная CV-платформа: детекция транспорта и распознавание номеров с 6000 камер
+\item NVIDIA Triton + TensorRT: 6 моделей на 6 GPU, dynamic batching, ensemble pipeline
+\item Ensemble plate recognition: 3-стадийный pipeline как один Triton-запрос
+\item \textbf{Результат:} <50ms латентность на кадр, 6000 камер в реальном времени, mypy strict
+\end{tightemize}
+\sectionsep
+
+%---------- Mediaclass API ----------
+\runsubsection{Mediaclass API}
+\descript{On-premise ASR \hfill Backend / ML-инженер}\\
+\location{2026 \enspace·\enspace DIGIS \enspace·\enspace Palatine $\rightarrow$ DIGIS}
+\begin{tightemize}
+\item Backend для «МЕДИАКЛАСС ИИ»: транскрипция аудио/видео с диаризацией
+\item Гибридные ML-провайдеры: локальный GPU или облако, переключение через контракты
+\item Кросс-платформенное аппаратное лицензирование (CPU/RAM/GPU fingerprint)
+\item \textbf{Результат:} автономный on-premise деплой, PyArmor, GPU auto-detection с CPU fallback
+\end{tightemize}
+\sectionsep
+
+%---------- Palatine Astro ----------
+\runsubsection{Palatine Astro}
+\descript{AI-агент в Telegram \hfill Backend / AI-инженер}\\
+\location{2025 \enspace·\enspace Palatine}
+\begin{tightemize}
+\item AI-платформа для персонализированных астрологических консультаций через Telegram
+\item LLM как AI-агент: автономно решает какие инструменты вызвать (натальная карта, синастрия)
+\item Кастомный MCP-сервер поверх Kerykeion: астрономические расчёты + SVG-диаграммы
+\item \textbf{Результат:} 80\% автоматизация консультаций, 35\% рост конверсии в подписку
+\end{tightemize}
+\sectionsep
+
+%---------- DGX Spark Benchmark ----------
+\runsubsection{DGX Spark LLM Benchmark}
+\descript{Бенчмарк inference \hfill Исследователь}\\
+\location{2026 \enspace·\enspace Palatine / Habr \enspace·\enspace \href{https://habr.com/ru/articles/994058/}{Публикация на Habr}}
+\begin{tightemize}
+\item Один из первых публичных бенчмарков NVIDIA DGX Spark (Grace Blackwell, 128 GB unified memory)
+\item Полный sweep: модель $\times$ датасет $\times$ concurrency (1-100), 5 квантизаций (BF16, FP8, AWQ, GPTQ)
+\item \textbf{Результат:} обнаружен эффект плато throughput после 50 запросов (LPDDR5X 273 GB/s)
+\end{tightemize}
+
+%=============================================================
+%     RIGHT COLUMN
+%=============================================================
+
+\switchcolumn
+
+\section{ОБРАЗОВАНИЕ}
+
+\runsubsection{Академия РВСН\\им. Петра Великого}
+\descript{Инженер}\\
+\location{2009 - 2014}\\[2pt]
+{\fontsize{9pt}{11pt}\selectfont Факультет автоматизированных систем управления\\
+Специальность: АСУ}
+\sectionsep
+
+%---------- Skills ----------
+
+\section{ТЕХНИЧЕСКИЙ СТЕК}
+
+{\fontsize{9pt}{11pt}\selectfont
+\textbf{Backend}\\
+Python, FastAPI, asyncio, Pydantic, SQLAlchemy, aiogram~3, WebSocket, gRPC
+\vspace{4pt}
+
+\textbf{ML / AI}\\
+PyTorch, TensorFlow, Transformers, scikit-learn, CatBoost, LangChain, OpenCV, YOLOv8, Ollama, vLLM, NVIDIA Triton, TensorRT, QLoRA, RAG, Fine-tuning LLM
+\vspace{4pt}
+
+\textbf{Data}\\
+PostgreSQL, Redis, Elasticsearch, pgvector, FAISS, Milvus, DuckDB
+\vspace{4pt}
+
+\textbf{Infra}\\
+Docker, GitLab CI/CD, GitHub Actions, Traefik, Nginx, Grafana, Prometheus, Loki, VMware, ClearML, Roboflow
+\vspace{4pt}
+
+\textbf{Frontend}\\
+Vue~3, TypeScript, Tailwind CSS, Nuxt, Streamlit
+}
+\sectionsep
+
+%---------- Publications ----------
+
+\section{ПУБЛИКАЦИИ}
+
+{\fontsize{9pt}{11pt}\selectfont
+\href{https://habr.com/ru/articles/994058/}{\textbf{Бенчмарк LLM-inference на NVIDIA DGX Spark}} · Habr, 2026\\[2pt]
+Один из первых публичных бенчмарков Grace Blackwell архитектуры (vLLM, 5 квантизаций, 4 метрики)
+}
+\sectionsep
+
+%---------- Links ----------
+
+\section{ССЫЛКИ}
+
+{\fontsize{9pt}{11pt}\selectfont
+\faGithub\ \href{https://github.com/versus666jzx}{github.com/versus666jzx}\\[3pt]
+\faTelegram\ \href{https://t.me/andrew_the_one}{t.me/andrew\_the\_one}\\[3pt]
+\faEnvelope\ \href{mailto:mattias666@mail.ru}{mattias666@mail.ru}
+}
+
+\end{paracol}
+
+\end{document}

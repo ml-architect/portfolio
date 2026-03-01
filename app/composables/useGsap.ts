@@ -20,9 +20,9 @@ interface CountUpOptions {
 }
 
 const blurInPresets: Record<BlurInVariant, { y: number; blur: string; duration: number; start: string }> = {
-  header: { y: 30, blur: '12px', duration: 0.9, start: 'top 80%' },
-  card: { y: 40, blur: '16px', duration: 0.8, start: 'top 85%' },
-  small: { y: 20, blur: '10px', duration: 0.7, start: 'top 85%' },
+  header: { y: 30, blur: '12px', duration: 0.9, start: 'top 95%' },
+  card: { y: 40, blur: '16px', duration: 0.8, start: 'top 98%' },
+  small: { y: 20, blur: '10px', duration: 0.7, start: 'top 98%' },
 }
 
 export function useGsap(scopeRef?: Ref<HTMLElement | null>) {
@@ -87,7 +87,7 @@ export function useGsap(scopeRef?: Ref<HTMLElement | null>) {
         ease: options?.ease ?? 'power2.out',
         scrollTrigger: {
           trigger: element,
-          start: options?.start ?? 'top 85%',
+          start: options?.start ?? 'top 98%',
         },
         onUpdate: () => {
           if (options?.formatter) {

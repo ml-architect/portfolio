@@ -111,18 +111,25 @@ onMounted(() => {
         <p class="text-xl font-medium text-white">
           {{ t('hero.lets_talk') }}
         </p>
-        <a
-          href="mailto:mattias666@mail.ru"
-          class="text-sm text-text-muted hover:text-white/70 transition-colors"
-        >
-          mattias666@mail.ru
-        </a>
+        <div class="flex items-center gap-3">
+          <a
+            href="mailto:mattias666@mail.ru"
+            class="text-sm text-text-muted hover:text-white/70 transition-colors"
+          >
+            mattias666@mail.ru
+          </a>
+          <span class="text-white/15">|</span>
+          <a
+            href="https://t.me/mattias_kindworker"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-sm text-text-muted hover:text-white/70 transition-colors"
+          >
+            Telegram
+          </a>
+        </div>
       </div>
 
-      <!-- Right: subtitle paragraph -->
-      <p class="max-w-md text-sm text-text-muted text-left md:text-right leading-relaxed">
-        {{ t('hero.subtitle') }}
-      </p>
     </div>
   </section>
 </template>

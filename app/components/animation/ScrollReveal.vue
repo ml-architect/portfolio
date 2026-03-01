@@ -41,7 +41,7 @@ onMounted(() => {
     ease: 'power2.out',
     scrollTrigger: {
       trigger: container.value,
-      start: 'top 85%',
+      start: 'top 95%',
       toggleActions: props.once ? 'play none none none' : 'play reverse play reverse',
     },
   })

@@ -3,36 +3,39 @@
     "home": "Главная",
     "projects": "Проекты",
     "blog": "Блог",
-    "about": "Обо мне"
+    "about": "Обо мне",
+    "resume": "Резюме"
   },
   "hero": {
     "title": "AI Systems&",
     "titleAccent": "Architecture",
-    "subtitle": "Backend-разработчик и ML-инженер. Проектирую production-ready AI-платформы, микросервисные архитектуры и системы обработки данных.",
+    "subtitle": "",
+    "seoDescription": "Портфолио ML-инженера и архитектора AI-систем. Production-ready платформы, микросервисы и пайплайны обработки данных.",
     "lets_talk": "Обсудим ваш проект?",
-    "email": "mattias666{'@'}mail.ru"
+    "email": "mattias666{'@'}mail.ru",
+    "downloadResume": "Резюме"
   },
   "stats": {
     "projects": "проектов",
     "commercial": "коммерческих продуктов",
-    "experience": "лет опыта",
-    "technologies": "технологий"
+    "localInference": "проектов с локальным GPU-инференсом",
+    "deployed": "сервисов в продакшене"
   },
   "impact": {
     "title": "Достижения",
-    "subtitle": "Реальные метрики из коммерческих проектов",
-    "cloud_title": "Микросервисов",
-    "cloud_desc": "Облачная ASR-платформа с GPU inference и real-time стримингом",
-    "contracts_title": "Risk-факторов",
-    "contracts_desc": "AI-анализ контрактов с Dual-LLM верификацией и fine-tuned моделями",
-    "models_title": "ML-моделей",
-    "models_desc": "Whisper, BERT, CatBoost, YOLOv8, Qwen, Llama — в production",
-    "finetune_title": "Fine-tuned LLM",
-    "finetune_desc": "Qwen2.5 (0.5B–32B) с QLoRA, Unsloth, опубликованы на HF Hub",
-    "services_title": "Сервисов задеплоено",
-    "services_desc": "Docker Compose, Traefik, GitLab CI/CD, мониторинг Grafana+Prometheus",
-    "security_title": "Реализаций безопасности",
-    "security_desc": "Sigma Rules Engine, ML-детекция атак, шифрование, аппаратные лицензии"
+    "subtitle": "Реальные метрики из production-проектов с локальным инференсом",
+    "localInference_title": "Проектов с локальным GPU-инференсом",
+    "localInference_desc": "Triton, vLLM, TensorRT, Ray Serve, Ollama — модели работают на собственных GPU без облачных зависимостей",
+    "audioScale_title": "Млн аудиоминут/день",
+    "audioScale_desc": "Облачная ASR-платформа: Triton + Ray Serve, 100+ языков, uptime 99.98%, 4 дата-центра",
+    "cameras_title": "Камер в реальном времени",
+    "cameras_desc": "CV-платформа на GPU-кластере 6× RTX A6000, TensorRT-оптимизация, латентность <50 мс",
+    "finetune_title": "макс. размер fine-tuned LLM",
+    "finetune_desc": "QLoRA fine-tuning от 0.5B до 32B параметров: Qwen, DeepSeek — замена коммерческих API",
+    "instances_title": "Инстансов по всей России",
+    "instances_desc": "SOC-платформа с ML-детекцией атак и локальной LLM — x3 к обнаружению инцидентов",
+    "latency_title": "Мс — латентность TensorRT-инференса",
+    "latency_desc": "Ensemble из 6 моделей на Triton, dynamic batching, multi-GPU распределение нагрузки"
   },
   "sections": {
     "featured": "Последние проекты",
@@ -106,18 +109,33 @@
     "empty": "Записей пока нет. Скоро здесь появятся статьи."
   },
   "expertise": {
+    "inference_title": "Local Inference & GPU",
+    "inference_desc": "Triton Inference Server, TensorRT, vLLM, Ray Serve, Ollama. Развёртывание LLM и CV-моделей на собственных GPU — от единичного сервера до кластера из 6× RTX A6000.",
+    "inference_tags": "Triton Inference Server, TensorRT, vLLM, Ray Serve, Ollama, CUDA, NVIDIA DGX Spark, gRPC, Dynamic Batching",
+    "ml_title": "ML & Deep Learning",
+    "ml_desc": "PyTorch, Transformers, QLoRA fine-tuning, CatBoost, YOLOv5/v8, OpenCV. End-to-end ML-пайплайны: от R&D и бенчмарков до production-деплоя моделей.",
+    "ml_tags": "PyTorch, Transformers, QLoRA, Unsloth, TRL, CatBoost, XGBoost, YOLOv5, YOLOv8, OpenCV, scikit-learn, BERT, Qwen, DeepSeek",
+    "llm_title": "LLM & AI-агенты",
+    "llm_desc": "LangChain, RAG (pgvector, FAISS), MCP-серверы, LLM-as-a-Judge. Проектирование AI-пайплайнов с локальными и облачными языковыми моделями.",
+    "llm_tags": "LangChain, RAG, pgvector, FAISS, MCP, n8n, LLM-as-a-Judge, Ollama, Fish Speech TTS, OpenAI API",
     "backend_title": "Backend-системы",
-    "backend_desc": "Python, FastAPI, asyncio, микросервисная архитектура. Проектирую высоконагруженные API, WebSocket-сервисы и распределённые системы обработки данных.",
-    "ml_title": "ML & AI",
-    "ml_desc": "PyTorch, Transformers, LLM fine-tuning, vLLM inference. Строю end-to-end ML-пайплайны от экспериментов до production с GPU-оптимизацией.",
+    "backend_desc": "FastAPI, asyncio, WebSocket, gRPC, микросервисная архитектура. Высоконагруженные API, real-time стриминг, Clean Architecture.",
+    "backend_tags": "Python, FastAPI, asyncio, WebSocket, gRPC, aiogram 3, Pydantic, Uvicorn, httpx, aiohttp",
     "data_title": "Data Engineering",
-    "data_desc": "PostgreSQL, Redis, Elasticsearch, векторные БД (pgvector, FAISS, Milvus). Проектирую схемы данных, ETL-процессы и поисковые системы.",
-    "infra_title": "Инфраструктура",
-    "infra_desc": "Docker, GitLab CI/CD, Grafana, мониторинг. Настраиваю контейнеризацию, автоматизацию деплоя и observability-стек для ML-сервисов."
+    "data_desc": "PostgreSQL, Redis, Elasticsearch, Supabase. Проектирую схемы данных, векторные хранилища, ETL-процессы и полнотекстовый поиск.",
+    "data_tags": "PostgreSQL, Redis, Elasticsearch, Supabase, pgvector, SQLite, SQLAlchemy, Alembic, asyncpg, pandas",
+    "infra_title": "MLOps & Инфраструктура",
+    "infra_desc": "Docker, GitLab CI/CD, Grafana + Prometheus + Loki, Traefik. Контейнеризация, автоматизация деплоя и полный observability-стек.",
+    "infra_tags": "Docker, Docker Compose, GitLab CI/CD, GitHub Actions, Traefik, Grafana, Prometheus, Loki, Nginx, ClearML"
   },
   "footer": {
     "copyright": "© {year} ML Architect",
     "built_with": "Создано на Nuxt"
+  },
+  "resume": {
+    "title": "Скачать резюме",
+    "ru": "Русский",
+    "en": "English"
   },
   "common": {
     "scroll_down": "Прокрутить вниз",
