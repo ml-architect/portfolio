@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+
 interface Props {
   projects: any[]
 }
@@ -6,7 +8,7 @@ interface Props {
 const props = defineProps<Props>()
 
 const gridRef = ref<HTMLElement | null>(null)
-const { gsap } = useGsap()
+let tweens: gsap.core.Tween[] = []
 
 function animateCards() {
   if (!gridRef.value) return
@@ -14,18 +16,27 @@ function animateCards() {
   const cards = gridRef.value.children
   if (!cards.length) return
 
-  gsap.fromTo(
+  // Убиваем предыдущие анимации
+  tweens.forEach(t => t.kill())
+  tweens = []
+
+  // Сначала сбрасываем все inline-стили от GSAP
+  gsap.set(cards, { clearProps: 'all' })
+
+  const tween = gsap.fromTo(
     cards,
-    { opacity: 0, y: 30 },
+    { opacity: 0, y: 40, filter: 'blur(16px)' },
     {
       opacity: 1,
       y: 0,
-      duration: 0.5,
-      stagger: 0.05,
-      ease: 'power3.out',
+      filter: 'blur(0px)',
+      duration: 0.7,
+      stagger: 0.08,
+      ease: 'power2.out',
       overwrite: true,
     },
   )
+  tweens.push(tween)
 }
 
 watch(
@@ -40,6 +51,11 @@ onMounted(async () => {
   await nextTick()
   animateCards()
 })
+
+onUnmounted(() => {
+  tweens.forEach(t => t.kill())
+  tweens = []
+})
 </script>
 
 <template>
@@ -47,7 +63,6 @@ onMounted(async () => {
     <div
       v-for="project in projects"
       :key="project._path"
-      style="opacity: 0"
     >
       <ProjectCard :project="project" />
     </div>

@@ -29,8 +29,8 @@ const hasMoreTags = computed(() => {
   <NuxtLink
     :to="project._path"
     class="
-      flex flex-col h-full bg-surface-800 rounded-card border border-[#1e1e1e]
-      p-6 hover:border-primary-500/30 transition-all duration-300
+      flex flex-col h-full bg-surface-800 rounded-card border border-white/[0.08]
+      p-6 hover:border-white/[0.2] transition-all duration-300
       hover:-translate-y-0.5
     "
   >

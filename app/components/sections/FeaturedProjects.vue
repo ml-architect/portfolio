@@ -28,22 +28,33 @@ onMounted(() => {
   if (!sectionRef.value) return
 
   const ctx = gsap.context(() => {
-    gsap.from('.projects-header', {
-      y: 40,
+    gsap.fromTo('.projects-header', {
+      y: 30,
       opacity: 0,
-      duration: 0.8,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: sectionRef.value,
         start: 'top 80%',
       },
     })
 
-    gsap.from('.featured-card', {
-      scale: 0.95,
+    gsap.fromTo('.featured-card', {
+      y: 40,
       opacity: 0,
-      duration: 0.7,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
       stagger: 0.12,
-      ease: 'power3.out',
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: '.bento-grid',
         start: 'top 80%',

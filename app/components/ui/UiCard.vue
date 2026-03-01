@@ -8,10 +8,10 @@ const props = withDefaults(defineProps<Props>(), {
 })
 
 const classes = computed(() => [
-  'bg-surface-800 rounded-card border border-surface-700/50',
+  'bg-surface-800 rounded-card border border-white/[0.08]',
   'transition-all duration-300',
   {
-    'hover:border-surface-600 hover:bg-surface-700/50 hover:-translate-y-0.5': props.hover,
+    'hover:border-white/[0.2] hover:bg-surface-700/50 hover:-translate-y-0.5': props.hover,
   },
 ])
 </script>

@@ -33,30 +33,33 @@ onMounted(() => {
 
   const ctx = gsap.context(() => {
     gsap.fromTo('.impact-header',
-      { y: 40, opacity: 0 },
+      { y: 30, opacity: 0, filter: 'blur(12px)' },
       {
         y: 0,
         opacity: 1,
-        duration: 0.8,
+        filter: 'blur(0px)',
+        duration: 0.9,
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: sectionRef.value,
-          start: 'top 80%',
+          start: 'top 90%',
           toggleActions: 'play none none none',
         },
       },
     )
 
     gsap.fromTo('.impact-card',
-      { y: 30, opacity: 0 },
+      { y: 40, opacity: 0, filter: 'blur(16px)' },
       {
         y: 0,
         opacity: 1,
-        duration: 0.6,
+        filter: 'blur(0px)',
+        duration: 0.8,
         stagger: 0.1,
-        ease: 'power3.out',
+        ease: 'power2.out',
         scrollTrigger: {
           trigger: '.impact-grid',
-          start: 'top 85%',
+          start: 'top 95%',
           toggleActions: 'play none none none',
         },
       },
@@ -67,12 +70,12 @@ onMounted(() => {
       const obj = { val: 0 }
       gsap.to(obj, {
         val: cards[index].value,
-        duration: 2,
-        delay: index * 0.15,
+        duration: 4,
+        delay: index * 0.2,
         ease: 'power2.out',
         scrollTrigger: {
           trigger: el,
-          start: 'top 90%',
+          start: 'top 95%',
           toggleActions: 'play none none none',
         },
         onUpdate: () => {

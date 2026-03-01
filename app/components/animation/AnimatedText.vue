@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Ref } from 'vue'
+import { gsap } from 'gsap'
 
 interface Props {
   text: string
@@ -14,8 +14,8 @@ const props = withDefaults(defineProps<Props>(), {
   animation: 'words',
 })
 
-const container: Ref<HTMLElement | null> = ref(null)
-const { gsap, addAnimation } = useGsap()
+const container = ref<HTMLElement | null>(null)
+let tween: gsap.core.Tween | null = null
 
 const segments = computed(() => {
   if (props.animation === 'chars') {
@@ -30,16 +30,21 @@ onMounted(() => {
   const targets = container.value.querySelectorAll('.animated-segment')
   if (!targets.length) return
 
-  addAnimation(() => {
-    gsap.from(targets, {
-      y: 20,
-      opacity: 0,
-      duration: 0.6,
-      delay: props.delay,
-      stagger: props.animation === 'chars' ? 0.02 : 0.06,
-      ease: 'power3.out',
-    })
+  tween = gsap.from(targets, {
+    y: 20,
+    opacity: 0,
+    duration: 0.6,
+    delay: props.delay,
+    stagger: props.animation === 'chars' ? 0.02 : 0.06,
+    ease: 'power3.out',
   })
+})
+
+onUnmounted(() => {
+  if (tween) {
+    tween.kill()
+    tween = null
+  }
 })
 </script>
 

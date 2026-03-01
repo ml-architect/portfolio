@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
@@ -29,15 +31,63 @@ useSeoMeta({
   ogTitle: () => post.value ? `${post.value.title} — ML Architect` : 'ML Architect',
   ogDescription: () => post.value?.description || '',
 })
+
+const pageRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (!pageRef.value) return
+
+  const ctx = gsap.context(() => {
+    gsap.fromTo('.blog-back-link', {
+      y: 20,
+      opacity: 0,
+      filter: 'blur(10px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.blog-post-header', {
+      y: 30,
+      opacity: 0,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      delay: 0.1,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.blog-post-body', {
+      y: 40,
+      opacity: 0,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
+      delay: 0.25,
+      ease: 'power2.out',
+    })
+  }, pageRef.value)
+
+  onUnmounted(() => ctx.revert())
+})
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto py-24 px-6">
+  <div ref="pageRef" class="max-w-4xl mx-auto py-24 px-6">
     <!-- Back link -->
     <NuxtLink
       :to="localePath('/blog')"
       class="
-        inline-flex items-center gap-2 text-sm text-[#545454]
+        blog-back-link inline-flex items-center gap-2 text-sm text-[#545454]
         hover:text-primary-400 transition-colors mb-8
       "
     >
@@ -47,7 +97,7 @@ useSeoMeta({
 
     <template v-if="post">
       <!-- Header -->
-      <header class="mb-12">
+      <header class="blog-post-header mb-12">
         <h1 class="text-display-md text-white font-display font-bold mb-4">
           {{ post.title }}
         </h1>
@@ -60,7 +110,7 @@ useSeoMeta({
       </header>
 
       <!-- Body -->
-      <article class="prose prose-invert max-w-none">
+      <article class="blog-post-body prose prose-invert max-w-none">
         <ContentRenderer :value="post" />
       </article>
     </template>

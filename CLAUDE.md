@@ -52,7 +52,7 @@
 ## Git-ветки
 - `main` — продакшен
 - `dev` — разработка
-- `glass` — текущая ветка (дизайн в стиле glass)
+- `new_anim` — текущая ветка (доработка анимаций и UI)
 
 ## Ограничения GitHub Pages (учтены в стеке)
 - Только статика — никакого SSR, API-роутов, серверных middleware
@@ -69,19 +69,19 @@
 │   ├── error.vue               # Страница ошибки
 │   ├── assets/css/             # Стили (main.css, tailwind.css)
 │   ├── components/
-│   │   ├── animation/          # AnimatedText, GridBackground, ScrollReveal
+│   │   ├── animation/          # AnimatedText, GridBackground, NoiseDotMatrix, ScrollReveal
 │   │   ├── layout/             # TheHeader, TheFooter, TheNavigation, TheMobileMenu, LanguageSwitcher
 │   │   ├── project/            # ProjectCard, ProjectFilter, ProjectGrid
-│   │   ├── sections/           # HeroSection, FeaturedProjects, FeaturedProjectCard, SkillsSection, StatsSection, MarqueeSection, ContactSection
+│   │   ├── sections/           # HeroSection, FeaturedProjects, FeaturedProjectCard, SkillsSection, StatsSection, ImpactSection, MarqueeSection, ContactSection
 │   │   └── ui/                 # UiBadge, UiButton, UiCard, UiDivider, UiSkillTag
 │   ├── composables/            # useGsap, useScrollAnimation
 │   ├── content/                # Markdown-контент (@nuxt/content)
 │   │   ├── ru/                 # Русскоязычный контент
 │   │   │   ├── blog/
-│   │   │   └── projects/       # 19 проектов
+│   │   │   └── projects/       # 16 проектов
 │   │   └── en/                 # Англоязычный контент
 │   │       ├── blog/
-│   │       └── projects/       # 19 проектов
+│   │       └── projects/       # 16 проектов
 │   ├── layouts/                # default.vue
 │   ├── locales/                # ru.json, en.json
 │   ├── pages/
@@ -92,36 +92,12 @@
 │   ├── plugins/                # gsap.client.ts
 │   ├── public/                 # favicon.svg
 │   └── types/                  # project.ts
-├── docs/                       # Документация и референсы
-│   ├── design-brief.md         # Дизайн-бриф проекта
-│   ├── portfolio-inspiration.md # Вдохновение для портфолио
-│   ├── glass/                  # Референсы glass-дизайна (Linear, Vercel, Reflect и др.)
-│   └── ui_ux_tips_and_tricks/  # Конспекты по UI/UX
-├── project_analyze_results/    # Аналитика проектов (исходные данные для контента)
 ├── .github/workflows/          # deploy.yml
 ├── nuxt.config.ts
 ├── tailwind.config.ts
 ├── tsconfig.json
 └── package.json
 ```
-
-## Справочные материалы
-
-### UI/UX дизайн (`docs/ui_ux_tips_and_tricks/`)
-Конспекты видеоуроков — референс при создании компонентов, анимаций и визуального оформления:
-- **11 Micro Animations...** — hover-эффекты, toast-уведомления, анимации клавиш
-- **4 UI Design Hacks...** — контекстные иллюстрации, doodle-элементы, декоративные акценты
-- **7 UI UX mistakes...** — типичные ошибки (user flow, состояния, навигация)
-- **How to think like a GENIUS...** — user intent, паттерны компоновки
-- **The 7 Color Mistakes...** — правило 60-30-10, тёмная тема, состояния элементов
-- **The 8 UI UX Cheat Codes...** — кернинг, вложенные скругления, letter-spacing
-- **Top 5 Advanced UX UI...** — персонализация, адаптивный поиск
-
-### Glass-дизайн (`docs/glass/`)
-Детальные разборы референсных сайтов для glass-стиля: Linear, Vercel, Reflect, Robinhood, Spotify Wrapped, Tomorrow.io, Apple Liquid Glass.
-
-### Аналитика проектов (`project_analyze_results/`)
-Подробные аналитические документы по проектам — используются как исходные данные при написании Markdown-контента для `app/content/`.
 
 ## Правила разработки
 - Весь UI — тёмная тема, без light mode

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 
@@ -28,12 +30,34 @@ useSeoMeta({
   ogTitle: `${t('blog.title')} — ML Architect`,
   ogDescription: t('blog.subtitle'),
 })
+
+const pageRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (!pageRef.value) return
+
+  const ctx = gsap.context(() => {
+    gsap.fromTo('.blog-header', {
+      y: 30,
+      opacity: 0,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      ease: 'power2.out',
+    })
+  }, pageRef.value)
+
+  onUnmounted(() => ctx.revert())
+})
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto py-24 px-6">
+  <div ref="pageRef" class="max-w-4xl mx-auto py-24 px-6">
     <!-- Heading -->
-    <header class="mb-12">
+    <header class="blog-header mb-12">
       <h1 class="text-display-md text-white font-display font-bold mb-2">
         {{ t('blog.title') }}
       </h1>
@@ -64,7 +88,7 @@ useSeoMeta({
             <p class="text-sm text-[#545454] line-clamp-3 flex-1">
               {{ post.description }}
             </p>
-            <span class="text-sm text-primary-400 mt-4 inline-flex items-center gap-1">
+            <span class="text-sm text-emerald-400 mt-4 inline-flex items-center gap-1">
               {{ t('blog.read_more') }}
               <Icon name="ph:arrow-right" size="14" />
             </span>

@@ -9,11 +9,16 @@ onMounted(() => {
   if (!sectionRef.value) return
 
   const ctx = gsap.context(() => {
-    gsap.from('.cta-title', {
-      y: 60,
+    gsap.fromTo('.cta-title', {
+      y: 40,
       opacity: 0,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
       duration: 1,
-      ease: 'power3.out',
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: '.cta-title',
         start: 'top 90%',
@@ -21,12 +26,17 @@ onMounted(() => {
       },
     })
 
-    gsap.from('.cta-button', {
+    gsap.fromTo('.cta-button', {
       y: 20,
       opacity: 0,
-      duration: 0.6,
-      delay: 0.3,
-      ease: 'power3.out',
+      filter: 'blur(10px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.7,
+      delay: 0.2,
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: '.cta-title',
         start: 'top 90%',

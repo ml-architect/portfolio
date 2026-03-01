@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { gsap } from 'gsap'
+
 const { t, locale } = useI18n()
 const localePath = useLocalePath()
 const route = useRoute()
@@ -43,15 +45,102 @@ useSeoMeta({
   ogTitle: () => project.value ? `${project.value.title} — ML Architect` : 'ML Architect',
   ogDescription: () => project.value?.description || '',
 })
+
+const pageRef = ref<HTMLElement | null>(null)
+
+onMounted(() => {
+  if (!pageRef.value) return
+
+  const ctx = gsap.context(() => {
+    gsap.fromTo('.project-back-link', {
+      y: 20,
+      opacity: 0,
+      filter: 'blur(10px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.6,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.project-header', {
+      y: 30,
+      opacity: 0,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      delay: 0.1,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.project-highlights', {
+      y: 40,
+      opacity: 0,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
+      delay: 0.2,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.project-tags', {
+      y: 30,
+      opacity: 0,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.7,
+      delay: 0.3,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.project-body', {
+      y: 40,
+      opacity: 0,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
+      delay: 0.35,
+      ease: 'power2.out',
+    })
+
+    gsap.fromTo('.project-nav', {
+      y: 30,
+      opacity: 0,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.7,
+      delay: 0.4,
+      ease: 'power2.out',
+    })
+  }, pageRef.value)
+
+  onUnmounted(() => ctx.revert())
+})
 </script>
 
 <template>
-  <div class="max-w-4xl mx-auto py-24 px-6">
+  <div ref="pageRef" class="max-w-4xl mx-auto py-24 px-6">
     <!-- Back link -->
     <NuxtLink
       :to="localePath('/projects')"
       class="
-        inline-flex items-center gap-2 text-sm text-[#545454]
+        project-back-link inline-flex items-center gap-2 text-sm text-[#545454]
         hover:text-primary-400 transition-colors mb-8
       "
     >
@@ -61,7 +150,7 @@ useSeoMeta({
 
     <template v-if="project">
       <!-- Hero area -->
-      <header class="mb-12">
+      <header class="project-header mb-12">
         <!-- Category badge -->
         <UiBadge :variant="project.category" class="mb-4">
           {{ project.category === 'commercial' ? t('filter.commercial') : t('filter.research') }}
@@ -111,7 +200,7 @@ useSeoMeta({
       <!-- Highlights -->
       <section
         v-if="project.highlights?.length"
-        class="mb-12 bg-surface-800 rounded-card border border-[#1e1e1e] p-6"
+        class="project-highlights mb-12 bg-surface-800 rounded-card border border-[#1e1e1e] p-6"
       >
         <h2 class="text-lg font-semibold text-white font-display mb-4">
           {{ t('project.highlights') }}
@@ -133,7 +222,7 @@ useSeoMeta({
       </section>
 
       <!-- Tags -->
-      <section v-if="project.tags?.length" class="mb-12">
+      <section v-if="project.tags?.length" class="project-tags mb-12">
         <h2 class="text-lg font-semibold text-white font-display mb-4">
           {{ t('project.tags') }}
         </h2>
@@ -147,7 +236,7 @@ useSeoMeta({
       </section>
 
       <!-- Markdown body -->
-      <section class="prose prose-invert max-w-none mb-12">
+      <section class="project-body prose prose-invert max-w-none mb-12">
         <ContentRenderer :value="project" />
       </section>
 
@@ -163,7 +252,7 @@ useSeoMeta({
       </div>
 
       <!-- Prev/Next navigation -->
-      <nav class="flex items-stretch gap-4 pt-8 border-t border-[#1e1e1e]">
+      <nav class="project-nav flex items-stretch gap-4 pt-8 border-t border-[#1e1e1e]">
         <NuxtLink
           v-if="prevProject"
           :to="prevProject._path"

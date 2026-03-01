@@ -34,22 +34,33 @@ onMounted(() => {
   if (!sectionRef.value) return
 
   const ctx = gsap.context(() => {
-    gsap.from('.expertise-title', {
-      y: 40,
+    gsap.fromTo('.expertise-title', {
+      y: 30,
       opacity: 0,
-      duration: 0.8,
+      filter: 'blur(12px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.9,
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: sectionRef.value,
         start: 'top 80%',
       },
     })
 
-    gsap.from('.expertise-item', {
-      y: 50,
+    gsap.fromTo('.expertise-item', {
+      y: 40,
       opacity: 0,
-      duration: 0.7,
+      filter: 'blur(16px)',
+    }, {
+      y: 0,
+      opacity: 1,
+      filter: 'blur(0px)',
+      duration: 0.8,
       stagger: 0.12,
-      ease: 'power3.out',
+      ease: 'power2.out',
       scrollTrigger: {
         trigger: '.expertise-grid',
         start: 'top 80%',
