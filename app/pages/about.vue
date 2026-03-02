@@ -167,7 +167,7 @@ const contacts: ContactLink[] = [
 
 // --- SEO ---
 
-useSeo(`${t('about.title')} — ML Architect`, t('about.intro'))
+useSeo(`${t('about.title')} — AI Architect`, t('about.intro'))
 
 // --- Animations ---
 

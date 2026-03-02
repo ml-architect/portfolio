@@ -124,7 +124,7 @@ model = torch.load("model.pt")
 ## SEO
 
 Метаданные генерируются автоматически:
-- **Title:** `{title} — ML Architect`
+- **Title:** `{title} — AI Architect`
 - **Description:** значение поля `description` из frontmatter
 - **OG-теги:** автоматически из title и description
 

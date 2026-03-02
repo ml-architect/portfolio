@@ -23,7 +23,7 @@ const filteredProjects = computed(() => {
   )
 })
 
-useSeo(`${t('sections.all_projects')} — ML Architect`, t('sections.featured_subtitle'))
+useSeo(`${t('sections.all_projects')} — AI Architect`, t('sections.featured_subtitle'))
 
 const pageRef = ref<HTMLElement | null>(null)
 

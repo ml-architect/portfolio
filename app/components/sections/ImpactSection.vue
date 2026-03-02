@@ -14,7 +14,7 @@ interface ImpactCard {
 
 const cards: ImpactCard[] = [
   { icon: 'ph:graphics-card-bold', value: 6, suffix: '', titleKey: 'impact.localInference_title', descKey: 'impact.localInference_desc' },
-  { icon: 'ph:waveform-bold', value: 10, suffix: '', titleKey: 'impact.audioScale_title', descKey: 'impact.audioScale_desc' },
+  { icon: 'ph:waveform-bold', value: 1000, suffix: '+', titleKey: 'impact.audioScale_title', descKey: 'impact.audioScale_desc' },
   { icon: 'ph:video-camera-bold', value: 6000, suffix: '', titleKey: 'impact.cameras_title', descKey: 'impact.cameras_desc' },
   { icon: 'ph:brain-bold', value: 32, suffix: 'B', titleKey: 'impact.finetune_title', descKey: 'impact.finetune_desc' },
   { icon: 'ph:map-pin-bold', value: 8, suffix: '', titleKey: 'impact.instances_title', descKey: 'impact.instances_desc' },
