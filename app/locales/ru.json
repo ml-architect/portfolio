@@ -26,7 +26,7 @@
     "subtitle": "Реальные метрики из production-проектов с локальным инференсом",
     "localInference_title": "Проектов с локальным GPU-инференсом",
     "localInference_desc": "Triton, vLLM, TensorRT, Ray Serve, Ollama — модели работают на собственных GPU без облачных зависимостей",
-    "audioScale_title": "Млн аудиоминут/день",
+    "audioScale_title": "аудиоминут/день",
     "audioScale_desc": "Облачная ASR-платформа: Triton + Ray Serve, 100+ языков, uptime 99.98%, 4 дата-центра",
     "cameras_title": "Камер в реальном времени",
     "cameras_desc": "CV-платформа на GPU-кластере 6× RTX A6000, TensorRT-оптимизация, латентность <50 мс",
@@ -129,7 +129,7 @@
     "infra_tags": "Docker, Docker Compose, GitLab CI/CD, GitHub Actions, Traefik, Grafana, Prometheus, Loki, Nginx, ClearML"
   },
   "footer": {
-    "copyright": "© {year} ML Architect",
+    "copyright": "© {year} AI Architect",
     "built_with": "Создано на Nuxt"
   },
   "resume": {

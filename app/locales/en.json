@@ -26,7 +26,7 @@
     "subtitle": "Real metrics from production projects with local inference",
     "localInference_title": "Local GPU Inference Projects",
     "localInference_desc": "Triton, vLLM, TensorRT, Ray Serve, Ollama — models run on own GPUs with zero cloud dependencies",
-    "audioScale_title": "M Audio Minutes/Day",
+    "audioScale_title": "Audio Minutes/Day",
     "audioScale_desc": "Cloud ASR platform: Triton + Ray Serve, 100+ languages, 99.98% uptime, 4 data centers",
     "cameras_title": "Cameras in Real-Time",
     "cameras_desc": "CV platform on 6x RTX A6000 GPU cluster, TensorRT optimization, <50ms latency",
@@ -129,7 +129,7 @@
     "infra_tags": "Docker, Docker Compose, GitLab CI/CD, GitHub Actions, Traefik, Grafana, Prometheus, Loki, Nginx, ClearML"
   },
   "footer": {
-    "copyright": "© {year} ML Architect",
+    "copyright": "© {year} AI Architect",
     "built_with": "Built with Nuxt"
   },
   "resume": {

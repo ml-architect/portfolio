@@ -37,7 +37,7 @@ const formattedDate = computed(() => {
 })
 
 useSeo(
-  project.value ? `${project.value.title} — ML Architect` : 'ML Architect',
+  project.value ? `${project.value.title} — AI Architect` : 'AI Architect',
   project.value?.description || '',
 )
 

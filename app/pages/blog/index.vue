@@ -15,7 +15,7 @@ const { data: posts } = await useAsyncData(
   { watch: [locale], default: () => [] },
 )
 
-useSeo(`${t('blog.title')} — ML Architect`, t('blog.subtitle'))
+useSeo(`${t('blog.title')} — AI Architect`, t('blog.subtitle'))
 
 const pageRef = ref<HTMLElement | null>(null)
 

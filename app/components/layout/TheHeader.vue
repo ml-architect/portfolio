@@ -53,7 +53,7 @@ watch(isMobileMenuOpen, (open) => {
           :to="localePath('/')"
           class="text-lg font-bold text-white hover:opacity-80 transition-opacity duration-200 tracking-tight shrink-0"
         >
-          ML Architect<sup class="text-xs font-normal ml-0.5 align-super">&reg;</sup>
+          AI Architect<sup class="text-xs font-normal ml-0.5 align-super">&reg;</sup>
         </NuxtLink>
 
         <!-- Desktop Navigation (pill container) -->
