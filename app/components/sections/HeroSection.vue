@@ -120,7 +120,7 @@ onMounted(() => {
           </a>
           <span class="text-white/15">|</span>
           <a
-            href="https://t.me/mattias_kindworker"
+            href="https://t.me/andrew_the_one"
             target="_blank"
             rel="noopener noreferrer"
             class="text-sm text-text-muted hover:text-white/70 transition-colors"
